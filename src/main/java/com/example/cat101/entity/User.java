@@ -8,7 +8,7 @@ import lombok.Setter;
 
 /**
  * <p>
- *
+ * 
  * </p>
  *
  * @author redred
@@ -41,16 +41,5 @@ import lombok.Setter;
 
     private String uinfo;
 
-  public User(Integer uid, String uname, String upwd, String uxname, String usex, String utel, String usite, Integer utype, String usrl, String uinfo) {
-    this.uid = uid;
-    this.uname = uname;
-    this.upwd = upwd;
-    this.uxname = uxname;
-    this.usex = usex;
-    this.utel = utel;
-    this.usite = usite;
-    this.utype = utype;
-    this.usrl = usrl;
-    this.uinfo = uinfo;
-  }
+
 }

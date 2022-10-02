@@ -8,7 +8,7 @@ import lombok.Setter;
 
 /**
  * <p>
- *
+ * 
  * </p>
  *
  * @author redred
@@ -33,12 +33,5 @@ import lombok.Setter;
 
     private Integer cisadopt;
 
-  public Cat(Integer cid, String cname, String ccolor, String curl, String cinfo, Integer cisadopt) {
-    this.cid = cid;
-    this.cname = cname;
-    this.ccolor = ccolor;
-    this.curl = curl;
-    this.cinfo = cinfo;
-    this.cisadopt = cisadopt;
-  }
+
 }

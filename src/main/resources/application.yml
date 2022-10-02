@@ -1,6 +1,6 @@
 server:
   ip: localhost
-  port: 9090
+  port: 8082
 
 spring:
   datasource:
@@ -13,7 +13,7 @@ spring:
       max-file-size: 100MB
       max-request-size: 100MB
 mybatis:
-  mapper-locations: classpath:mapper/*.xml  #????mybatis?xml??
+  mapper-locations: classpath:mapper/*.xml
 #  configuration:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 mybatis-plus:

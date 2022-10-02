@@ -8,7 +8,7 @@ import lombok.Setter;
 
 /**
  * <p>
- *
+ * 
  * </p>
  *
  * @author redred
@@ -29,10 +29,5 @@ import lombok.Setter;
 
     private String ainfo;
 
-  public Adopt(Integer aid, Integer uid, Integer cid, String ainfo) {
-    this.aid = aid;
-    this.uid = uid;
-    this.cid = cid;
-    this.ainfo = ainfo;
-  }
+
 }

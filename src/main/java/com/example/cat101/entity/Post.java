@@ -9,7 +9,7 @@ import lombok.Setter;
 
 /**
  * <p>
- *
+ * 
  * </p>
  *
  * @author redred
@@ -34,12 +34,5 @@ import lombok.Setter;
 
     private Integer pnum;
 
-  public Post(Integer pid, String purl, String pinfo, LocalDate ptime, String psite, Integer pnum) {
-    this.pid = pid;
-    this.purl = purl;
-    this.pinfo = pinfo;
-    this.ptime = ptime;
-    this.psite = psite;
-    this.pnum = pnum;
-  }
+
 }

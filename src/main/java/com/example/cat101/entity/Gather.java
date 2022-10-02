@@ -9,7 +9,7 @@ import lombok.Setter;
 
 /**
  * <p>
- *
+ * 
  * </p>
  *
  * @author redred
@@ -34,12 +34,5 @@ import lombok.Setter;
 
     private LocalDate gtime;
 
-  public Gather(Integer gid, Integer uid, Integer cid, Integer pid, Integer gnum, LocalDate gtime) {
-    this.gid = gid;
-    this.uid = uid;
-    this.cid = cid;
-    this.pid = pid;
-    this.gnum = gnum;
-    this.gtime = gtime;
-  }
+
 }

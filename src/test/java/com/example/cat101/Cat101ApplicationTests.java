@@ -6,14 +6,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootTest
 class Cat101ApplicationTests {
-    @Resource
-    CatController catController;
-    @Test
-    void contextLoads() {
-        catController.save(new Cat(1,"小紫","黄色","d:/files","可爱的小猫",1));
-    }
+
+
 
 }
