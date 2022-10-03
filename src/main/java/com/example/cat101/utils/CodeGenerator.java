@@ -8,9 +8,9 @@ import java.util.Collections;
 
 public class CodeGenerator {
 
-    public static void main(String[] args) {
-        generate();
-    }
+  //  public static void main(String[] args) {
+     //   generate();
+//    }
 
     private static void generate() {
         FastAutoGenerator.create("jdbc:mysql://localhost:3306/pet_manage?serverTimezone=GMT%2b8", "root", "xxx868336790")

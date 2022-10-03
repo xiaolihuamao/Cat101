@@ -7,7 +7,7 @@ create table User
 (
     Uid int auto_increment primary key, #用户编号
     Uname varchar(20) not null, #账号
-    Upwd varchar(20) not null,  #密码
+    Upwd varchar(255) not null,  #密码
     Uxname varchar(20) not null,  #用户名
     Usex char(2) ,  #用户性别
     Utel varchar(20) not null,  #电话

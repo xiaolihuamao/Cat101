@@ -4,11 +4,12 @@ import lombok.Data;
 
 @Data
 public class UserDto {
-    String uname;
-    String upwd;
-    String uxname;
-    String usex;
-    String utel;
-    String usite;
-    Integer utype;
+    private String uname;
+    private String upwd;
+    private String uxname;
+    private String usex;
+    private String utel;
+    private String usite;
+    private Integer utype;
+    private String token;
 }
