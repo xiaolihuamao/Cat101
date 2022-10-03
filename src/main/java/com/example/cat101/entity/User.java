@@ -8,7 +8,7 @@ import lombok.Setter;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author redred
@@ -21,25 +21,25 @@ import lombok.Setter;
     private static final long serialVersionUID = 1L;
 
       @TableId(value = "Uid", type = IdType.AUTO)
-      private Integer uid;
+      private Integer uid;//用户编号
 
-    private String uname;
+    private String uname;//账号
 
-    private String upwd;
+    private String upwd;//密码
 
-    private String uxname;
+    private String uxname;//用户名
 
-    private String usex;
+    private String usex;//性别
 
-    private String utel;
+    private String utel;//电话
 
-    private String usite;
+    private String usite;//地址
 
-    private Integer utype;
+    private Integer utype;//角色类型，0是用户
 
-    private String usrl;
+    private String usrl;//头像地址
 
-    private String uinfo;
+    private String uinfo;//信息介绍
 
 
 }

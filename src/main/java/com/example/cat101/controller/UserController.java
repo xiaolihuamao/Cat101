@@ -1,8 +1,12 @@
 package com.example.cat101.controller;
 
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.cat101.common.Constants;
 import com.example.cat101.common.Result;
+import com.example.cat101.controller.dto.UserDto;
+import com.example.cat101.exception.ServiceException;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
@@ -30,7 +34,7 @@ public class UserController {
     private IUserService userService;
 
     // 新增或者更新
-    @PostMapping
+    @PostMapping("/save")
     public Result save(@RequestBody User user) {
         userService.saveOrUpdate(user);
         return Result.success();
@@ -64,6 +68,35 @@ public class UserController {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.orderByDesc("id");
         return Result.success(userService.page(new Page<>(pageNum, pageSize), queryWrapper));
+    }
+    @PostMapping("/login")
+    public  Result login(@RequestBody UserDto userDto){
+        if (StrUtil.isBlank(userDto.getUname())||StrUtil.isBlank(userDto.getUpwd())){
+            return Result.error(Constants.CODE_400,"参数不足错误");
+        }
+        UserDto dto=userService.login(userDto);
+        return Result.success(dto);
+    }
+
+    @PostMapping("/register")
+    public Result register(@RequestBody UserDto userDTO) {
+        String username = userDTO.getUname();
+        String password = userDTO.getUpwd();
+        if (StrUtil.isBlank(username) || StrUtil.isBlank(password)) {
+            return Result.error(Constants.CODE_400, "参数错误");
+        }
+        QueryWrapper queryWrapper=new QueryWrapper();
+        queryWrapper.eq("Uname",username);
+        User one;
+        try {
+            one =userService.getOne(queryWrapper);
+        } catch (Exception e) {
+            throw new ServiceException(Constants.CODE_500, "系统错误");
+        }
+        if (one!=null){
+            return Result.error(Constants.CODE_600,"用户名重复");
+        }
+        return Result.success(userService.register(userDTO));
     }
 
 }

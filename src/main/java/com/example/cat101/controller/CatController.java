@@ -30,7 +30,7 @@ public class CatController {
     private ICatService catService;
 
     // 新增或者更新
-    @PostMapping
+    @PostMapping("/save")
     public Result save(@RequestBody Cat cat) {
         catService.saveOrUpdate(cat);
         return Result.success();
