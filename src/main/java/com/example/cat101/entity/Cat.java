@@ -5,10 +5,9 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
-
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author redred

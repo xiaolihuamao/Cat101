@@ -12,7 +12,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registry.addInterceptor(jwtInterceptor())
                 .addPathPatterns("/**")  // 拦截所有请求，通过判断token是否合法来决定是否需要登录
                 .excludePathPatterns("/user/login", "/user/register", "/**/export", "/**/import", "/file/**"
-                        , "/webjars/**", "/v2/**", "/api", "/api-docs", "/api-docs/**")//放行登录注册，导入导出等功能
+                      , "/webjars/**", "/v2/**", "/api", "/api-docs", "/api-docs/**")//放行登录注册，导入导出等功能
                 .excludePathPatterns( "/**/*.html", "/**/*.js", "/**/*.css", "/**/*.woff", "/**/*.ttf");  // 放行静态文件
 
     }
