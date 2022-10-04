@@ -15,7 +15,8 @@ import com.example.cat101.service.IUserService;
 import com.example.cat101.entity.User;
 
 import org.springframework.web.bind.annotation.RestController;
-
+//eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxIiwiZXhwIjoxNjY0ODcxNzI4fQ.foLoQ5ihSURnSxDd_L8Vjtn15_2oR7tm12DMQlJ7cFA
+//eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyIiwiZXhwIjoxNjY0ODk1NjAxfQ.seni_MPiZeHfpoUbs6-KX_0hV0qQ39X2efvLNYk3of4
 /**
  * <p>
  *  前端控制器
@@ -34,6 +35,7 @@ public class UserController {
     // 新增或者更新
     @PostMapping("/save")
     public Result save(@RequestBody User user) {
+        userService.update();
         userService.saveOrUpdate(user);
         return Result.success();
     }
@@ -75,7 +77,6 @@ public class UserController {
         UserDto dto=userService.login(userDto);
         return Result.success(dto);
     }
-
     @PostMapping("/register")
     public Result register(@RequestBody UserDto userDTO) {
         String username = userDTO.getUname();
