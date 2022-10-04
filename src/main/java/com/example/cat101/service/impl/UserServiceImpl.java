@@ -31,8 +31,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public UserDto login(UserDto userDto) {
         // 用户密码 md5加密
-        userDto.setUpwd(SecureUtil.md5(userDto.getUpwd()));
-        User one = getUserInfo(userDto);
+     //   userDto.setUpwd(SecureUtil.md5(userDto.getUpwd()));
+        User one = confirmUserInfo(userDto);
         if (one != null) {
             BeanUtil.copyProperties(one, userDto, true);
             // 设置token
@@ -47,7 +47,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public User register(UserDto userDto) {
         // 用户密码 md5加密
-        userDto.setUpwd(SecureUtil.md5(userDto.getUpwd()));
+      //  userDto.setUpwd(SecureUtil.md5(userDto.getUpwd()));
         User one = getUserInfo(userDto);
         if (one == null) {
             one = new User();
@@ -58,11 +58,25 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         }
         return one;
     }
-//此方法用于查询用户是否存在
+//此方法用于查询用户是否存在，只要名字一样就是存在，
     private User getUserInfo(UserDto userDTO) {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("Uname", userDTO.getUname());
-        queryWrapper.eq("Upwd", userDTO.getUpwd());
+       // queryWrapper.eq("Upwd", userDTO.getUpwd());
+        User one;
+        try {
+            one = getOne(queryWrapper); // 从数据库查询用户信息
+        } catch (Exception e) {
+            LOG.error(e);
+            throw new ServiceException(Constants.CODE_500, "系统错误");
+        }
+        return one;
+    }
+//此方法用于验证用户登录信息是否正确，必须用户加密码都存在，才是验证成功！
+    private User confirmUserInfo(UserDto userDTO) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("Uname", userDTO.getUname());
+         queryWrapper.eq("Upwd", userDTO.getUpwd());
         User one;
         try {
             one = getOne(queryWrapper); // 从数据库查询用户信息
