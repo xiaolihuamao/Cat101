@@ -10,6 +10,6 @@ public class UserDto {
     private String usex;
     private String utel;
     private String usite;
-    private Integer utype;
-    private String token;
+    private Integer utype;//
+    private String token;//
 }

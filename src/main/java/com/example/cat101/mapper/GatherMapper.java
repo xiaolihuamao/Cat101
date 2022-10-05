@@ -1,7 +1,11 @@
 package com.example.cat101.mapper;
 
+import com.example.cat101.controller.dto.UserGatherDto;
+import com.example.cat101.entity.Cat;
 import com.example.cat101.entity.Gather;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +17,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface GatherMapper extends BaseMapper<Gather> {
 
+    List<UserGatherDto> search(Integer uid);
 }

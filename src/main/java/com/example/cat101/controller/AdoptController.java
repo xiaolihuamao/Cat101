@@ -59,7 +59,7 @@ public class AdoptController {
     public Result findPage(@RequestParam Integer pageNum,
                                 @RequestParam Integer pageSize) {
         QueryWrapper<Adopt> queryWrapper = new QueryWrapper<>();
-        queryWrapper.orderByDesc("id");
+        queryWrapper.orderByDesc("Aid");
         return Result.success(adoptService.page(new Page<>(pageNum, pageSize), queryWrapper));
     }
 

@@ -66,7 +66,7 @@ public class UserController {
     public Result findPage(@RequestParam Integer pageNum,
                                 @RequestParam Integer pageSize) {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.orderByDesc("id");
+        queryWrapper.orderByDesc("Uid");
         return Result.success(userService.page(new Page<>(pageNum, pageSize), queryWrapper));
     }
     @PostMapping("/login")

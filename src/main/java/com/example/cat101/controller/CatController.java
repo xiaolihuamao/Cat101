@@ -1,19 +1,13 @@
 package com.example.cat101.controller;
-
-
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.cat101.common.Result;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-
-
 import com.example.cat101.service.ICatService;
 import com.example.cat101.entity.Cat;
-
 import org.springframework.web.bind.annotation.RestController;
-
 /**
  * <p>
  *  前端控制器
@@ -62,7 +56,7 @@ public class CatController {
     public Result findPage(@RequestParam Integer pageNum,
                                 @RequestParam Integer pageSize) {
         QueryWrapper<Cat> queryWrapper = new QueryWrapper<>();
-        queryWrapper.orderByDesc("id");
+        queryWrapper.orderByDesc("Cid");
         return Result.success(catService.page(new Page<>(pageNum, pageSize), queryWrapper));
     }
 

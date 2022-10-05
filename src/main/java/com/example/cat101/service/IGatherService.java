@@ -1,7 +1,11 @@
 package com.example.cat101.service;
 
+import com.example.cat101.controller.dto.UserGatherDto;
+import com.example.cat101.entity.Cat;
 import com.example.cat101.entity.Gather;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +17,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IGatherService extends IService<Gather> {
 
+    List<UserGatherDto> search(Integer uid);
 }

@@ -62,7 +62,7 @@ public class PostController {
     public Result findPage(@RequestParam Integer pageNum,
                                 @RequestParam Integer pageSize) {
         QueryWrapper<Post> queryWrapper = new QueryWrapper<>();
-        queryWrapper.orderByDesc("id");
+        queryWrapper.orderByDesc("Pid");
         return Result.success(postService.page(new Page<>(pageNum, pageSize), queryWrapper));
     }
 
