@@ -5,9 +5,9 @@
 
     <!-- 中间区域layout  左侧是导航栏 右侧是路由页面   -->
     <el-row :gutter="0">
-      <el-col :span="4" v-show="this.$route.meta.isShow"><div class="grid-content bg-purple" ><navMenu></navMenu></div></el-col>
-      <el-col :span="this.$route.meta.span"><div class="grid-content"> <router-view></router-view></div></el-col>
-    </el-row>
+      <el-col :span="5" v-show="this.$route.meta.isShow"><div class="grid-content bg-purple" ><navMenu></navMenu></div></el-col>
+      <el-col :span="this.$route.meta.span"><div class="grid-content bg-purple"> <router-view></router-view></div></el-col>
+    </el-row>   
   </div>
 </template>
 <script>
@@ -34,7 +34,7 @@ export default {
   }
 }
 </script>
-<style>
+<style> 
   .el-row {
     margin-bottom: 20px;
     &:last-child {
