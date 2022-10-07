@@ -19,6 +19,9 @@ public class FileController {
 
     @Value("${pictureFile.path-mapping}")
     private String picturePath_mapping;
+
+    @Value("${server.ip}")
+    private String serverip;
 //这个写在了配置文件中
 
     @PostMapping("/upload")
@@ -35,7 +38,7 @@ public class FileController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String final_fileName = "http://localhost:8082" + picturePath_mapping + fileName;
+        String final_fileName = "http://"+serverip+":8082" + picturePath_mapping + fileName;
         System.out.println(final_fileName);
         return final_fileName;
     }
