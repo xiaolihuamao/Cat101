@@ -32,6 +32,7 @@ export const registerAPI = ({ Uname, Upwd, Uxname,Usex,Utel,Usite,Utype,Usrl,Uin
             Usrl,
             Uinfo
         }
+    
     })
 }
 //登录请求接口，定义登录按钮点击后，向后端发送请求的函数，参数是表单提交的数据

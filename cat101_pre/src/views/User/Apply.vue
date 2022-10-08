@@ -81,8 +81,6 @@ export default {
   }
 }
 </script>
-
-<!-- <style lang="less" scoped></style> -->
 <style scoped>
 .title {
   text-align: center;
