@@ -2,7 +2,7 @@
   <div>
     <el-page-header @back="goBack"></el-page-header>
     <div class="info">
-      <el-button type="danger" plain class="star">收藏</el-button>
+      <el-button type="danger" plain class="star" @click="star">收藏</el-button>
       <el-image :src="src" :preview-src-list="srcList" title="点击查看大图"></el-image>
       <div class="msg">
         <el-tag type="info">姓名</el-tag>
@@ -11,6 +11,12 @@
         <div class="detail">{{ cat.ccolor }}</div>
         <el-tag type="info">信息描述</el-tag>
         <div class="detail">{{ cat.cinfo }}</div>
+        <el-tag type="info">状态</el-tag>
+        <div class="detail">
+          <div v-if="cat.cisadopt==0">待领养哦~</div>
+          <div v-else-if="cat.cisadopt==1">已有人申请领养啦~</div>
+          <div v-else>已被领养~</div>
+        </div>
       </div>
       <div class="btn">
 <!--        TODO:申请完成后，能将按钮 disabled 然后文字为：已领养-->
@@ -21,6 +27,9 @@
 </template>
 
 <script>
+
+import {starAPI, updateCatAPI} from "@/api";
+
 export default {
   name: 'myInfo',
   data() {
@@ -29,10 +38,10 @@ export default {
       srcList: [
         'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'
       ],
-      cat: {
-        cname: '喵喵喵',
-        ccolor: '银渐层',
-        cinfo: '这是同学们反应的，在终端101练习生大学拍到的小猫咪，已经学校里待了很久很久了，但是骨瘦如柴，每次都靠着同学们的投喂才勉强生存下来，希望好心人能够领养这只可怜的喵喵~',
+      cat: {},
+      form:{
+        uid:'',
+        cid:'',
       }
     };
   },
@@ -40,6 +49,22 @@ export default {
     goBack() {
       window.history.go(-1);
     },
+    indexs: async function () {
+      this.cat=JSON.parse(localStorage.getItem('cat'));
+    },
+    async star() {
+      this.form.uid = JSON.parse(localStorage.getItem('user')).uid;
+      this.form.cid = this.cat.cid;
+      const json = JSON.stringify(this.form);
+      const {data: res} = await starAPI(json);    //提交表单后获取到表单数据对象ruleForm然后使用axios传递给接口函数，得到一个返回值，是promise对象       //打印后端返回结果,用于验证编写是否成功，后续可删除这段！！！！！！！
+      if (res.code === '200') {
+        this.$message.success("收藏成功！！")                            ////后端返回成功结果，提示后端返回的错误message或者也可以自己设置提示
+      }
+    },
+  },
+  created:async function(i) {
+    //自动加载indexs方法
+    this.indexs();
   }
 };
 </script>

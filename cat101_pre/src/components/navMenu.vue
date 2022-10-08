@@ -4,9 +4,7 @@
       <el-menu
     default-active="1"
     class="el-menu-vertical-demo"
-    @open="handleOpen"
-    @close="handleClose"
-    router="true">
+    router>
     <!-- 点击导航栏跳转到首页 -->
     <el-menu-item index="/layout/user" default-active>
       <template slot="title">
@@ -15,21 +13,21 @@
       </template>
      </el-menu-item>
 
-     <!-- 点击跳转导航栏 跳转到 我的-->
-     <el-menu-item index="/layout/mine">
-      <template slot="title">
-        <i class="el-icon-user-solid"></i>
-        <span>我的</span>
-      </template>
-     </el-menu-item>
+<!--     &lt;!&ndash; 点击跳转导航栏 跳转到 我的&ndash;&gt;-->
+<!--     <el-menu-item index="/layout/mine">-->
+<!--      <template slot="title">-->
+<!--        <i class="el-icon-user-solid"></i>-->
+<!--        <span>我的申请</span>-->
+<!--      </template>-->
+<!--     </el-menu-item>-->
 
      <!-- 点击跳转导航栏 跳转到 圈子-->
-     <el-menu-item index="/layout/daily" >
-      <template slot="title">
-        <i class="el-icon-s-opportunity"></i>
-        <span>圈子</span>
-      </template>
-     </el-menu-item>
+<!--     <el-menu-item index="/layout/daily" >-->
+<!--      <template slot="title">-->
+<!--        <i class="el-icon-s-opportunity"></i>-->
+<!--        <span>圈子</span>-->
+<!--      </template>-->
+<!--     </el-menu-item>-->
 
      <!-- 点击跳转导航栏 跳转到 收藏-->
      <el-menu-item index="/layout/like">

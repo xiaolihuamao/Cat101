@@ -10,10 +10,10 @@ public class InterceptorConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(jwtInterceptor())
-                .addPathPatterns("/**")  // æ‹¦æˆªæ‰€æœ‰è¯·æ±‚ï¼Œé€šè¿‡åˆ¤æ–­tokenæ˜¯å¦åˆæ³•æ¥å†³å®šæ˜¯å¦éœ€è¦ç™»å½•
+                .addPathPatterns("/**")  // À¹½ØËùÓĞÇëÇó£¬Í¨¹ıÅĞ¶ÏtokenÊÇ·ñºÏ·¨À´¾ö¶¨ÊÇ·ñĞèÒªµÇÂ¼
                 .excludePathPatterns("/user/login", "/user/register", "/**/export", "/**/import", "/file/**"
-                      , "/webjars/**", "/v2/**", "/api", "/api-docs", "/api-docs/**")//æ”¾è¡Œç™»å½•æ³¨å†Œï¼Œå¯¼å…¥å¯¼å‡ºç­‰åŠŸèƒ½
-                .excludePathPatterns( "/**/*.html", "/**/*.js", "/**/*.css", "/**/*.woff", "/**/*.ttf");  // æ”¾è¡Œé™æ€æ–‡ä»¶
+                      , "/webjars/**", "/v2/**", "/api", "/api-docs", "/api-docs/**")//·ÅĞĞµÇÂ¼×¢²á£¬µ¼Èëµ¼³öµÈ¹¦ÄÜ
+                .excludePathPatterns( "/**/*.html", "/**/*.js", "/**/*.css", "/**/*.woff", "/**/*.ttf");  // ·ÅĞĞ¾²Ì¬ÎÄ¼ş
 
     }
 

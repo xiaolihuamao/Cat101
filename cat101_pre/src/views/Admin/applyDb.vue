@@ -1,72 +1,76 @@
 <template>
   <el-main>
     <el-table
-      :data="
-        tableData.filter(
-          (data) =>
-            !search || data.name.toLowerCase().includes(search.toLowerCase())
-        )
-      "
-      style="width: 100%"
-    >
-      <Scoped slot >申请书列表</Scoped>
-      <el-table-column label="编号" prop="cid"> </el-table-column>
-      <el-table-column label="照片" prop="pic"> </el-table-column>
-      <el-table-column label="描述" prop="description"> </el-table-column>
+        :data="tableData.filter((data) =>!search || data.name.toLowerCase().includes(search.toLowerCase()))
+      " style="width: 100%">
+      <Scoped slot>申请书列表</Scoped>
+      <el-table-column label="编号" prop="aid"></el-table-column>
+      <el-table-column label="用户id" prop="uid"></el-table-column>
+      <el-table-column label="猫咪id" prop="cid"></el-table-column>
+      <el-table-column label="申请原因" prop="ainfo"></el-table-column>
       <el-table-column align="right">
         <template slot="header">
-            申请书列表
-          <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />
+          操作
+          <!--          申请书列表-->
+          <!--          <el-input v-model="search" size="mini" placeholder="输入关键字搜索"/>-->
         </template>
         <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)"
-            >编辑</el-button
-          >
+          <el-button size="mini"
+                     type="danger"
+                     @click="handleNO(scope.$index, scope.row)">
+            驳回
+          </el-button>
           <el-button
-            size="mini"
-            type="danger"
-            @click="handleDelete(scope.$index, scope.row)"
-            >Delete</el-button
-          >
+              size="mini"
+              type="success"
+              @click="handleYes(scope.$index, scope.row)">
+            通过
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
   </el-main>
 </template>
 <script>
+import {adoptBackAPI, adoptDeleteAPI, catInfoAPI, searchAPI} from "@/api";
+
 export default {
   name: "myApplydb",
-    data() {
-      return {
-        tableData: [{
-          cid: '2016-05-02',
-          pic: '王小虎',
-          description: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          cid: '2016-05-04',
-          pic: '王小虎',
-          description: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          cid: '2016-05-01',
-          pic: '王小虎',
-          description: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          cid: '2016-05-03',
-          pic: '王小虎',
-          description: '上海市普陀区金沙江路 1516 弄'
-        }],
-        search: '',
-      }
-     
+  data() {
+    return {
+      tableData: [],
+      search: '',
+    }
+  },
+  methods: {
+    async handleNO(index, row) {
+      console.log(index, row);
+      this.$message.success("处理成功！！");
+      // await adoptDeleteAPI(index+1);
     },
-    methods: {
-      handleEdit(index, row) {
-        console.log(index, row);
-      },
-      handleDelete(index, row) {
-        console.log(index, row);
+    async handleYes(index, row) {
+      console.log(index, row);
+      this.$message.success("处理成功！！");
+      // await adoptDeleteAPI(index+1);
+    },
+    indexs: async function () {
+      const {data: res} = await adoptBackAPI();
+      if (res.code === '200') {
+        this.tableData = res.data;
+        // console.log(this.catsALL[0].cname);
+      } else {
+        this.$message.error(res.msg) //后端返回失败结果，提示后端返回的错误message或者也可以自己设置提示
       }
     },
-  }
+  },
+  created: async function () {
+    //自动加载indexs方法
+    this.indexs();
+  },
+  // activated: async function () {
+  // //自动加载indexs方法
+  // this.indexs();}
+}
 </script>
-<style></style>
+<style>
+</style>
