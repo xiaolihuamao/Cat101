@@ -91,6 +91,14 @@ const routes =[
                     span: 19
                 }  
             },
+            {
+                path: 'addcat',
+                component:() => import ('@/views/Admin/addCat.vue'),
+                   meta:{
+                   isShow:true,
+                   span: 19
+               }  
+           }
               ]
         }
         

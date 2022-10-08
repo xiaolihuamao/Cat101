@@ -1,6 +1,6 @@
 <template>
   <div class="register">
-    <div style="position: absolute; left: 500px; top: 130px;">
+    <div style="position: absolute; left: 555px; top: 130px;">
       <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
         <el-tabs class="header">
           <span slot="label" class="head">用户</span>
@@ -27,13 +27,14 @@
       </el-form>
 
     </div>
+
   </div>
 
 
 </template>
 
 <script>
-import { loginAPI } from "@/api/index";    //导入调登录接口的函数
+import { loginAPI } from "@/api/index"; //导入调登录接口的函数
 // import { mapMutations } from "@/store/index";
 export default {
   name: "myLogin",
@@ -60,16 +61,12 @@ export default {
     return {
       ruleForm: {
         uname: "",
-        upwd: "",
-        utype: "",
+        upwd: ""
       },
       // 校验规则对象
       rules: {
         upwd: [{ validator: validatePass, trigger: "blur" }],
         uname: [{ validator: checkuname, trigger: "blur" }],
-        utype: [
-          { required: true, message: '请选择登录角色', trigger: 'change' }
-        ],
       },
     };
   },
@@ -82,15 +79,24 @@ export default {
       this.$refs[formName].validate(async (valid) => {
         if (valid) {
           console.log(this.ruleForm);
-          console.log(JSON.stringify(this.ruleForm));      //打印出从表单提交来的需要向后端传递的数据，用于验证编写是否成功，后续可删除这段！！！！！！！
-          const { data: res } = await loginAPI(this.ruleForm);
-          console.log(res);                //打印后端返回结果,用于验证编写是否成功，后续可删除这段！！！！！！！
-          if (res.code != 0) return this.$message.error(res.message)        //后端返回失败结果，提示后端返回的错误message或者也可以自己设置提示
-          this.$message.success(res.message)                              //后端返回成功结果，提示后端返回的成功message或者也可以自己设置提示
-          this.updataToken(res.token)
-          this.$router.push('/layout/user');                              //跳转到首页
-          this.$store.state.isNew = true;                                 //让welLogin组件上的“新消息”按钮出现
-          this.$store.state.isLogin = false;                              //让welLogin组件上的“登录”和“注册”按钮消失
+          console.log(JSON.stringify(this.ruleForm)); //打印出从表单提交来的需要向后端传递的数据，用于验证编写是否成功，后续可删除这段！！！！！！！
+          const json = JSON.stringify(this.ruleForm);
+          const { data: res } = await loginAPI(json);
+          console.log(res); //打印后端返回结果,用于验证编写是否成功，后续可删除这段！！！！！！！
+          if (res.code !== "200") return this.$message.error(res.msg); //后端返回失败结果，提示后端返回的错误message或者也可以自己设置提示
+          this.$message.success("登录成功"); //后端返回成功结果，提示后端返回的成功message或者也可以自己设置提示
+          // this.updataToken(res.token)
+          localStorage.setItem("user", JSON.stringify(res.data)); // 存储用户信息到浏览器
+          if (res.data.utype === 0) {
+            this.$router.push("/layout/user"); //跳转到首页
+            this.$store.state.isNew = true; //让welLogin组件上的“新消息”按钮出现
+            this.$store.state.isLogin = false;
+          }else{
+            this.$router.push('/layout/admin');
+            this.$store.state.isNew = true; //让welLogin组件上的“新消息”按钮出现
+            this.$store.state.isLogin = false;
+          }
+          //让welLogin组件上的“登录”和“注册”按钮消失
         } else {
           console.log("登录失败!!");
           return false;
@@ -147,8 +153,6 @@ export default {
   float: right;
   color: black;
 }
-
-
 
 .header {
   font-size: large;
@@ -247,3 +251,4 @@ input {
 }
 </style>
   
+

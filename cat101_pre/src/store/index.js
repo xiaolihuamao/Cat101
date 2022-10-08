@@ -1,6 +1,7 @@
  
 import Vue from 'vue'
-import Vuex from 'vuex'
+import Vuex from 'vuex' 
+
  
 Vue.use(Vuex)
  
@@ -9,10 +10,12 @@ export default new Vuex.Store({
   state: {
     isNew: false,
     isLogin: true,
-    token:''      //用来存储登陆成功后从后台得到的 token
+    // catList:[]
+    // token:''      //用来存储登陆成功后从后台得到的 token
     
   },
   getters: {
+    
     
   },
 
@@ -23,6 +26,15 @@ export default new Vuex.Store({
     updatedToken(state,newToken) {
       state.token = newToken     
     },
+    // getcatList(){
+    //   this.$axios.get('/cat')
+    //   .then(res => {
+    //     this.catList = res.data;
+    //     console.log(res.data);
+    //   },err => {
+    //     console.log(err);
+    //   })
+    // }
     
   },
   // 操作异步操作mutation
