@@ -13,6 +13,7 @@
         <div class="detail">{{ cat.cinfo }}</div>
       </div>
       <div class="btn">
+<!--        TODO:申请完成后，能将按钮 disabled 然后文字为：已领养-->
         <el-button type="warning" plain @click="$router.push('/layout/apply')">申请领养</el-button>
       </div>
     </div>

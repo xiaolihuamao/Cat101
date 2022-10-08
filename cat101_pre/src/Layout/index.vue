@@ -3,15 +3,15 @@
     <!-- 头部欢迎页面 -->
     <welLogo></welLogo>
 
-    <!-- 中间区域layout  左侧是导航栏 右侧是路由页面   -->
+<!--     中间区域layout  左侧是导航栏 右侧是路由页面-->
     <el-row :gutter="0">
       <el-col :span="4" v-show="this.$route.meta.isShow"><div class="grid-content" ><navMenu></navMenu></div></el-col>
-      <el-col :span="this.$route.meta.span"><div class="grid-content"> <router-view></router-view></div></el-col>
+      <el-col :span="this.$route.meta.span+1"><div class="grid-content"> <router-view></router-view></div></el-col>
     </el-row>
   </div>
 </template>
 <script>
-import welLogo from "@/components/welLogo";
+import welLogo from "@/components/welLogo.vue";
 import navMenu from "@/components/navMenu.vue";
 export default {
   name: "layOut",
