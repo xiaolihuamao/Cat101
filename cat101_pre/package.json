@@ -1,5 +1,5 @@
 {
-  "name": "cat101_pre",
+  "name": "cathelping",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -37,12 +37,7 @@
       "parser": "@babel/eslint-parser"
     },
     "rules": {
-      "generator-star-spacing": "off",
-      "no-debugger": "off",
-      "no-tabs": "off",
-      "no-unused-vars": "off",
-      "no-console": "off",
-      "no-irregular-whitespace": "off"
+      "no-unused-vars": "off"
     }
   },
   "browserslist": [
