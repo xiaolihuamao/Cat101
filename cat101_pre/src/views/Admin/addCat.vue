@@ -14,20 +14,23 @@
           <el-input v-model="form.ccolor" autocomplete="off"></el-input>
         </el-form-item>
 
-        <el-form-item label="备注" :label-width="formLabelWidth">
+        <el-form-item label="描述信息" :label-width="formLabelWidth">
           <el-input v-model="form.cinfo" autocomplete="off"></el-input>
         </el-form-item>
 
-        <el-form-item label="领养状态" :label-width="formLabelWidth">
-          <el-select v-model="form.isadopt" placeholder="请选择">
-            <el-option label="已领养" value="0"></el-option>
-            <el-option label="待领养" value="1"></el-option>
-          </el-select>
-        </el-form-item>
+<!--        <el-form-item label="领养状态" :label-width="formLabelWidth">-->
+<!--          <el-select v-model="form.isadopt" placeholder="请选择">-->
+<!--            <el-option label="已领养" value="4"></el-option>-->
+<!--            <el-option label="待领养" value="0"></el-option>-->
+<!--            <el-option label="待领养" value="0"></el-option>-->
+<!--            <el-option label="待领养" value="0"></el-option>-->
+<!--            <el-option label="待领养" value="0"></el-option>-->
+<!--          </el-select>-->
+<!--        </el-form-item>-->
         <el-form-item label="上传图片" prop="imageUrl">
           <el-upload
             class="avatar-uploader"
-            action="http://localhost:8282/upload/img"
+            action="/file/upload"
             :show-file-list="false"
             :on-success="handleAvatarSuccess"
             :before-upload="beforeAvatarUpload"
@@ -37,7 +40,7 @@
           </el-upload>
         </el-form-item>
         <el-upload
-          action="https://jsonplaceholder.typicode.com/posts/"
+          action="/file/upload"
           list-type="picture-card"
           :on-preview="handlePictureCardPreview"
           :on-remove="handleRemove"
@@ -72,7 +75,7 @@ export default {
         ccolor: "",
         cinfo: "",
         curl: "",
-        cisadopt: false,
+        cisadopt: 0,
       },
       formLabelWidth: "120px",
     };
