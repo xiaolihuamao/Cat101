@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkcat101_pre"]=self["webpackChunkcat101_pre"]||[]).push([[427],{2427:function(e,n,u){u.r(n),u.d(n,{default:function(){return s}});var t=function(){var e=this,n=e._self._c;return n("div",[e._v(" Mine.vue ")])},r=[],c={name:"myMine"},a=c,i=u(1001),l=(0,i.Z)(a,t,r,!1,null,"619eb8ed",null),s=l.exports}}]);
+//# sourceMappingURL=427.9f3736c1.js.map
