@@ -20,7 +20,7 @@
       <!-- 搜索查询框 -->
       <el-table-column align="right">
         <template slot="header" slot-scope="{}">
-          <el-link  target="_blank" @click="$router.push('/layout/addcat')">默认链接</el-link>
+          <el-link  target="_blank" @click="$router.push('/layout/addcat')">点击新增猫数据</el-link>
           <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />
         </template>
         <!-- 删除和编辑按钮 -->
@@ -68,7 +68,7 @@ export default {
       //     console.log("失败");
       // }
     },
-    addCat(catForm) {},
+    // addCat(catForm) {},
     // handleEdit(index, row) {
     //       console.log(index, row);
     //     },
