@@ -1,10 +1,14 @@
 package com.example.cat101.service.impl;
 
+import com.example.cat101.controller.dto.AdoptPreDto;
 import com.example.cat101.entity.Adopt;
 import com.example.cat101.mapper.AdoptMapper;
 import com.example.cat101.service.IAdoptService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -16,5 +20,15 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class AdoptServiceImpl extends ServiceImpl<AdoptMapper, Adopt> implements IAdoptService {
+@Resource
+AdoptMapper adoptMapper;
+    @Override
+    public List<AdoptPreDto> searchAll(Integer uid) {
+        return adoptMapper.searchAll(uid);
+    }
 
+    @Override
+    public AdoptPreDto searchByAid(Integer aid) {
+        return adoptMapper.searchByAid(aid);
+    }
 }

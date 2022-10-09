@@ -4,7 +4,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/pet_manage?serverTimezone=GMT%2b8
     username: root
-    password: 123456
+    password: xxx868336790
   servlet:
     multipart:
       max-file-size: 100MB
@@ -25,7 +25,7 @@ resources:
   static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${pictureFile.path-mapping}
 server:
   port: 8082
-  ip: localhost
+  ip: 10.44.86.135
 
 
 
