@@ -3,7 +3,7 @@
     <el-page-header @back="goBack"></el-page-header>
     <div class="info">
       <el-button type="danger" plain class="star" @click="star">收藏</el-button>
-      <el-image :src="src" :preview-src-list="srcList" title="点击查看大图"></el-image>
+      <el-image :src=(cat.curl) :preview-src-list="srcList" title="点击查看大图"></el-image>
       <div class="msg">
         <el-tag type="info">姓名</el-tag>
         <div class="detail">{{ cat.cname }}</div>
@@ -34,9 +34,8 @@ export default {
   name: 'myInfo',
   data() {
     return {
-      src: "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",
       srcList: [
-        'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'
+        JSON.parse(localStorage.getItem('cat')).curl,
       ],
       cat: {},
       form:{

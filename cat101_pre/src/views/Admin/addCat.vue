@@ -1,7 +1,7 @@
 <template>
   <div>
-    <el-button type="text" @click="dialogFormVisible = true"
-      >点击新增猫数据</el-button
+    <el-button type="warning" @click="dialogFormVisible = true;"
+      class="add">点击新增猫数据</el-button
     >
 
     <el-dialog title="新增猫数据" :visible.sync="dialogFormVisible">
@@ -14,7 +14,7 @@
           <el-input v-model="form.ccolor" autocomplete="off"></el-input>
         </el-form-item>
 
-        <el-form-item label="备注" :label-width="formLabelWidth">
+        <el-form-item label="描述信息" :label-width="formLabelWidth">
           <el-input v-model="form.cinfo" autocomplete="off"></el-input>
         </el-form-item>
 
@@ -67,9 +67,8 @@ export default {
         cisadopt: "",
       },
       formLabelWidth: "120px",
-      dialogImageUrl: "",
-      dialogVisible: false,
       json :"",
+      isDisabled:false,
     };
   },
   methods: {
@@ -93,13 +92,19 @@ export default {
       this.dialogVisible = true;
       console.log(file.url);
     },
-     
+
     submitCat: async function (){
       this.json = JSON.stringify(this.form),
-       { data:res } = await addcatAPI(this.json);
-      console.log(res.data);
-       
+      await addcatAPI(this.json);
+      // console.log(res.data);
+      this.$message.success("猫咪添加成功！！");
+      // this.isDisabled=true;
     }
   },
 };
 </script>
+<style>
+.add{
+  margin: 50px;
+}
+</style>

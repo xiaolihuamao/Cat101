@@ -20,8 +20,8 @@
       <!-- 搜索查询框 -->
       <el-table-column align="right">
         <template slot="header" slot-scope="{}">
-          <el-link  target="_blank" @click="$router.push('/layout/addcat')">点击新增猫数据</el-link>
-          <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />
+          <el-link  target="_blank" @click="$router.push('/layout/addcat')" class="link">点击新增猫数据</el-link>
+<!--          <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />-->
         </template>
         <!-- 删除和编辑按钮 -->
         <template slot-scope="scope">
@@ -32,8 +32,7 @@
             size="mini"
             type="danger"
             @click="handleDelete(scope.$index, scope.row)"
-            >删除</el-button
-          >
+            >删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -112,4 +111,8 @@ export default {
 };
 </script>
 <style>
+.el-link.el-link--default {
+  color: #ff8800;
+  text-decoration: underline 1px;
+}
 </style>
