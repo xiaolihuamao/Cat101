@@ -9,5 +9,5 @@ vue
 springboot
 
 ## 终端开发
-* 微信小程序
 * pc端
+* Android端
