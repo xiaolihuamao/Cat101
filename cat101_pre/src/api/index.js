@@ -139,7 +139,7 @@ export const showStarAPI = (uid) => {
 //后台显示所有领养信息
 export const adoptBackAPI = () => {
     return request({
-        url: '/adopt',
+        url: '/adopt/find',
         method: 'GET'
     })
 }
@@ -172,4 +172,3 @@ export const deleteCatAPI = (cid) => {
         method: 'DELETE'
     })
 }
-

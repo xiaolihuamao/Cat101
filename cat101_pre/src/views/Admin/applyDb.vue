@@ -3,7 +3,7 @@
     <el-table
         :data="tableData.filter((data) =>!search || data.name.toLowerCase().includes(search.toLowerCase()))
       " style="width: 100%">
-      <Scoped slot>申请书列表</Scoped>
+      <!--      <Scoped slot>申请书列表</Scoped>-->
       <el-table-column label="编号" prop="aid"></el-table-column>
       <el-table-column label="用户id" prop="uid"></el-table-column>
       <el-table-column label="猫咪id" prop="cid"></el-table-column>
@@ -32,7 +32,7 @@
   </el-main>
 </template>
 <script>
-import {adoptBackAPI, adoptDeleteAPI, catInfoAPI, searchAPI} from "@/api";
+import {adoptBackAPI, adoptDeleteAPI, catInfoAPI, searchAPI, updateCatAPI} from "@/api";
 
 export default {
   name: "myApplydb",
@@ -40,18 +40,31 @@ export default {
     return {
       tableData: [],
       search: '',
+      updateInfo: {
+        cid: '',
+        cisadopt: 1,
+      },
     }
   },
   methods: {
     async handleNO(index, row) {
-      console.log(index, row);
-      this.$message.success("处理成功！！");
+      this.updateInfo = {
+        cid: row.cid,
+        cisadopt: 0,
+      }
+      const {data: res} = await updateCatAPI(JSON.stringify(this.updateInfo));
+      if (res.code === '200')
+        this.$message.success("驳回成功！！");
       // await adoptDeleteAPI(index+1);
     },
     async handleYes(index, row) {
-      console.log(index, row);
-      this.$message.success("处理成功！！");
-      // await adoptDeleteAPI(index+1);
+      this.updateInfo = {
+        cid: row.cid,
+        cisadopt: 2,
+      }
+      const {data: res} = await updateCatAPI(JSON.stringify(this.updateInfo));
+      if (res.code === '200')
+        this.$message.success("通过成功！！");
     },
     indexs: async function () {
       const {data: res} = await adoptBackAPI();

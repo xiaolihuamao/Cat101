@@ -1,6 +1,6 @@
 <template>
   <div class="register">
-    <div style="position: absolute; left: 555px; top: 130px;">
+    <div style="position: absolute; left: 850px; top: 200px;">
       <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
         <el-tabs class="header">
           <span slot="label" class="head">用户</span>
