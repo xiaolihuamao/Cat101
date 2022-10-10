@@ -13,13 +13,13 @@
       </template>
      </el-menu-item>
 
-<!--     &lt;!&ndash; 点击跳转导航栏 跳转到 我的&ndash;&gt;-->
-<!--     <el-menu-item index="/layout/mine">-->
-<!--      <template slot="title">-->
-<!--        <i class="el-icon-user-solid"></i>-->
-<!--        <span>我的申请</span>-->
-<!--      </template>-->
-<!--     </el-menu-item>-->
+     <!-- 点击跳转导航栏 跳转到 我的-->
+     <el-menu-item index="/layout/mine">
+      <template slot="title">
+        <i class="el-icon-user-solid"></i>
+        <span>我的申请</span>
+      </template>
+     </el-menu-item>
 
      <!-- 点击跳转导航栏 跳转到 圈子-->
 <!--     <el-menu-item index="/layout/daily" >-->

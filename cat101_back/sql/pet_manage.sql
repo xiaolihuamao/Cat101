@@ -26,7 +26,7 @@ create table Cat
     Ccolor varchar(20) not null,    #毛色
     Curl varchar(100) not null,		#图片地址
     Cinfo varchar(100) not null ,   #信息描述
-    Cisadopt int not null  #领养状态：未领养=0 待审核=1，审核通过=2，审核不通过=3，已领养=4
+    Cisadopt int not null  #领养状态：未领养=0 待审核=1，已领养=2
 );
 
 

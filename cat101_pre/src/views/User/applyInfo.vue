@@ -2,46 +2,41 @@
   <div>
     <el-page-header @back="goBack"></el-page-header>
     <div class="info">
-      <el-button type="danger" plain class="star" @click="star">收藏</el-button>
-      <el-image :src=(cat.curl) :preview-src-list="srcList" title="点击查看大图"></el-image>
+      <el-image :src=(cat.curl) :preview-src-list="srcList" title="点击查看猫咪大图"></el-image>
       <div class="msg">
         <el-tag type="info">猫咪名称</el-tag>
         <div class="detail">{{ cat.cname }}</div>
         <el-tag type="info">毛色</el-tag>
         <div class="detail">{{ cat.ccolor }}</div>
-        <el-tag type="info">信息描述</el-tag>
+        <el-tag type="info">猫咪信息</el-tag>
         <div class="detail">{{ cat.cinfo }}</div>
-        <el-tag type="info">状态</el-tag>
+        <el-tag type="info">申请原因</el-tag>
+        <div class="detail">{{ cat.cinfo }}</div>
+        <el-tag type="info">申请状态</el-tag>
         <div class="detail">
-          <div v-if="cat.cisadopt==0">待领养哦~</div>
-          <div v-else-if="cat.cisadopt==1">已有人申请领养啦~</div>
-          <div v-else>已被领养~</div>
+          <div v-if="cat.cisadopt==0" class="no">审核不通过~</div>
+          <div v-else-if="cat.cisadopt==1" class="wait">审核中</div>
+          <div v-else class="yes">审核通过</div>
         </div>
       </div>
       <div class="btn">
-<!--        TODO:申请完成后，能将按钮 disabled 然后文字为：已领养-->
-        <el-button type="warning" plain @click="$router.push('/layout/apply')">申请领养</el-button>
+        <el-button type="warning" plain @click="cancel">取消申请</el-button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-
-import {starAPI, updateCatAPI} from "@/api";
+import {starAPI} from "@/api";
 
 export default {
-  name: 'myInfo',
+  name: 'applyInfo',
   data() {
     return {
       srcList: [
         JSON.parse(localStorage.getItem('cat')).curl,
       ],
       cat: {},
-      form:{
-        uid:'',
-        cid:'',
-      }
     };
   },
   methods: {
@@ -49,7 +44,10 @@ export default {
       window.history.go(-1);
     },
     indexs: async function () {
-      this.cat=JSON.parse(localStorage.getItem('cat'));
+      this.cat = JSON.parse(localStorage.getItem('cat'));
+    },
+    async cancel(){
+      //删除贴子
     },
     async star() {
       this.form.uid = JSON.parse(localStorage.getItem('user')).uid;
@@ -61,14 +59,13 @@ export default {
       }
     },
   },
-  created:async function(i) {
+  created: async function (i) {
     //自动加载indexs方法
     this.indexs();
   }
 };
 </script>
 
-<!-- <style lang="less" scoped></style> -->
 <style scoped>
 .info {
   position: relative;
@@ -128,5 +125,19 @@ export default {
   right: 120px;
   top: -15px;
   z-index: 999;
+}
+
+.no {
+  color: darkred;
+  font-weight: bold;
+}
+
+.yes {
+  color: darkgreen;
+  font-weight: bold;
+}
+
+.wait {
+  font-weight: bold;
 }
 </style>

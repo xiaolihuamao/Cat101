@@ -8,101 +8,120 @@ import myUser from "@/views/User";
 Vue.use(VueRouter);
 
 //创建路由的实例对象
-const routes =[
-        {   path:"/",
-            redirect:"/layout"
-        },
-        {   path:"/layout",
-            redirect:"/layout/user",
-            component:layOut,
-            children:[ 					 // 通过children配置子级路由
-			{    path:'user',	        // 用户首页
-				component: myUser , 
-                meta:{
-                    isShow:true,
-                    span: 19
-                }
-			},
-            {    path: 'info',           //详情页
-                component: () =>import ('@/views/User/Info.vue'),
-                meta:{
-                    isShow:true,
+const routes = [
+    {
+        path: "/",
+        redirect: "/layout"
+    },
+    {
+        path: "/layout",
+        redirect: "/layout/user",
+        component: layOut,
+        children: [ 					 // 通过children配置子级路由
+            {
+                path: 'user',	        // 用户首页
+                component: myUser,
+                meta: {
+                    isShow: true,
                     span: 19
                 }
             },
-            {    path:'apply',              //申请页面
-                component: () =>import ('@/views/User/Apply.vue'),
-                meta:{
-                    isShow:true,
+            {
+                path: 'info',           //详情页
+                component: () => import ('@/views/User/Info.vue'),
+                meta: {
+                    isShow: true,
                     span: 19
                 }
             },
-            {    path:'register', 		 // 这里是使用懒加载方式导入 注册组件
-				component: () => import ('@/views/Register'),   
-                meta:{
-                    isShow:false,
-                    span: 24
-                }         
-			},
-			{    path:'login',	        //这里是登录页面
-				component: () => import ('@/views/Login') ,
-                meta:{
-                    isShow:false,
+            {
+                path: 'apply',              //申请页面
+                component: () => import ('@/views/User/Apply.vue'),
+                meta: {
+                    isShow: true,
+                    span: 19
+                }
+            },
+            {
+                path: 'register', 		 // 这里是使用懒加载方式导入 注册组件
+                component: () => import ('@/views/Register'),
+                meta: {
+                    isShow: false,
                     span: 24
                 }
-			},
-            {    path: 'admin',          //后台页面
-                component: () =>import ('@/views/Admin'),
-                redirect:"/layout/admin/catdb",
-                meta:{
-                    isShow:false,
+            },
+            {
+                path: 'login',	        //这里是登录页面
+                component: () => import ('@/views/Login'),
+                meta: {
+                    isShow: false,
+                    span: 24
+                }
+            },
+            {
+                path: 'admin',          //后台页面
+                component: () => import ('@/views/Admin'),
+                redirect: "/layout/admin/catdb",
+                meta: {
+                    isShow: false,
                     span: 24
                 },
                 children: [
                     {
                         path: 'catdb',
-                        component: () =>import ('@/views/Admin/catDb.vue'),
+                        component: () => import ('@/views/Admin/catDb.vue'),
                     },
                     {
                         path: 'applydb',
-                        component: () =>import ('@/views/Admin/applyDb.vue')
+                        component: () => import ('@/views/Admin/applyDb.vue')
                     }
                 ]
             },
-            {    path:'like',	        //这里是收藏页面
-				component: () => import ('@/views/User/Like.vue'),
-                meta:{
-                    isShow:true,
+            {
+                path: 'like',	        //这里是收藏页面
+                component: () => import ('@/views/User/Like.vue'),
+                meta: {
+                    isShow: true,
                     span: 19
-                }       
-			},
-            {    path:'mine',              //我的页面
-                component: () => import ('@/views/User/Mine.vue'),
-                meta:{
-                    isShow:true,
-                    span: 19,
-                    needLogin:true
-                }         
+                }
             },
-            {    path:'daily',              //圈子页面
-                component:() => import ('@/views/User/Daily.vue'),
-                meta:{
-                    isShow:true,
+            {
+                path: 'mine',              //我的页面
+                component: () => import ('@/views/User/Mine.vue'),
+                meta: {
+                    isShow: true,
+                    span: 19,
+                    needLogin: true
+                }
+            },
+            {
+                path: 'daily',              //圈子页面
+                component: () => import ('@/views/User/Daily.vue'),
+                meta: {
+                    isShow: true,
                     span: 19
-                }  
+                }
             },
             {
                 path: 'addcat',
-                component:() => import ('@/views/Admin/addCat.vue'),
-                   meta:{
-                   isShow:true,
-                   span: 19
-               }  
-           }
-              ]
-        }
-        
-    ]
+                component: () => import ('@/views/Admin/addCat.vue'),
+                meta: {
+                    isShow: true,
+                    span: 19
+                }
+            },
+            {
+                path: 'applyInfo',
+                component: () => import ('@/views/User/applyInfo.vue'),
+                meta: {
+                    isShow: true,
+                    span: 19
+                }
+            }
+        ]
+    }
+
+]
 
 const router = new VueRouter({
     routes
