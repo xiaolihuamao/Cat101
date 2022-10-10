@@ -5,8 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "dev": "webpack-dev-server --open --port 8082  --hot  --host 10.44.86.135 "
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "axios": "^0.27.2",

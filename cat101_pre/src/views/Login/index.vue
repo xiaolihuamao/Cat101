@@ -78,11 +78,11 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(async (valid) => {
         if (valid) {
-          console.log(this.ruleForm);
-          console.log(JSON.stringify(this.ruleForm)); //打印出从表单提交来的需要向后端传递的数据，用于验证编写是否成功，后续可删除这段！！！！！！！
+          // console.log(this.ruleForm);
+          // console.log(JSON.stringify(this.ruleForm)); //打印出从表单提交来的需要向后端传递的数据，用于验证编写是否成功，后续可删除这段！！！！！！！
           const json = JSON.stringify(this.ruleForm);
           const { data: res } = await loginAPI(json);
-          console.log(res); //打印后端返回结果,用于验证编写是否成功，后续可删除这段！！！！！！！
+          // console.log(res); //打印后端返回结果,用于验证编写是否成功，后续可删除这段！！！！！！！
           if (res.code !== "200") return this.$message.error(res.msg); //后端返回失败结果，提示后端返回的错误message或者也可以自己设置提示
           this.$message.success("登录成功"); //后端返回成功结果，提示后端返回的成功message或者也可以自己设置提示
           // this.updataToken(res.token)

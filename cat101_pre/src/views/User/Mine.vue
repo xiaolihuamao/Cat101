@@ -1,15 +1,15 @@
 <template>
   <div>
     <el-row :gutter="20">
-      <div v-for="i in applyALL" :key="i.cid">
+      <div v-for="i in applyALL" :key="i.aid">
         <el-col :span="5">
           <div class="grid-content">
-            <el-image :src=(i.curl) @click="turnInto(i.cid)"></el-image>
+            <el-image :src=(i.curl) @click="turnInto(i.aid)"></el-image>
             <div class="title">{{ i.cname }}</div>
             <div class="status">
               <div v-if="i.cisadopt==0" class="no">审核不通过</div>
               <div v-else-if="i.cisadopt==1" class="wait">审核中</div>
-              <div v-else class="yes">审核通过</div>
+              <div v-else-if="i.cisadopt==2" class="yes">审核通过</div>
             </div>
             <div class="content">申请原因：{{ i.ainfo }}</div>
           </div>
@@ -20,43 +20,34 @@
 </template>
 
 <script>
-import {catInfoAPI, searchAPI} from "@/api";
+import {applyInfoAPI, mineAPI} from "@/api";
 
 export default {
   name: "Mine",
   data() {
     return {
-      catNum: 0,
-      applyALL: [{
-        cname:'喵喵喵',
-        cisadopt:0,
-        ainfo:'我真的想要',
-        curl:'http://localhost:8082/myImg/d8870490650042c69352488893d4a0ec..jpg'
-      }],
+      applyALL: [],
+      user:JSON.parse(localStorage.getItem('user')),
     };
   },
   methods: {
     indexs: async function () {
-      // TODO:来接口了就写
-      // const {data: res} = await searchAPI();
-      // if (res.code === '200') {
-      //   this.catNum = res.data.length;
-      //   this.applyALL = res.data;
-      //   // console.log(this.catsALL[0].curl);
-      //   // console.log(this.catsALL[0].cname);
-      // } else {
-      //   this.$message.error(res.msg) //后端返回失败结果，提示后端返回的错误message或者也可以自己设置提示
-      // }
+      const {data: res} = await mineAPI(this.user.uid);
+      if (res.code === '200') {
+        this.applyALL = res.data;
+      } else {
+        this.$message.error(res.msg) //后端返回失败结果，提示后端返回的错误message或者也可以自己设置提示
+      }
     },
-    async turnInto(id){
-      this.$router.push('/layout/applyInfo');
-      // const {data: res} = await catInfoAPI(id);
-      // if (res.code === '200') {
-      //   localStorage.setItem('cat',JSON.stringify(res.data));
-      //   this.$router.push('/layout/info');
-      // } else {
-      //   this.$message.error(res.msg) //后端返回失败结果，提示后端返回的错误message或者也可以自己设置提示
-      // }
+    async turnInto(aid){
+      // console.log(aid);
+      const {data: res} = await applyInfoAPI(aid);
+      if (res.code === '200') {
+        localStorage.setItem('apply',JSON.stringify(res.data));
+        this.$router.push('/layout/applyInfo');
+      } else {
+        this.$message.error(res.msg) //后端返回失败结果，提示后端返回的错误message或者也可以自己设置提示
+      }
     }
   },
   created:async function(i) {

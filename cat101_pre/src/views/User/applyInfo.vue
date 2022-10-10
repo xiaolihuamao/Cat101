@@ -2,41 +2,41 @@
   <div>
     <el-page-header @back="goBack"></el-page-header>
     <div class="info">
-      <el-image :src=(cat.curl) :preview-src-list="srcList" title="点击查看猫咪大图"></el-image>
+      <el-image :src=(apply.curl) :preview-src-list="srcList" title="点击查看猫咪大图"></el-image>
       <div class="msg">
         <el-tag type="info">猫咪名称</el-tag>
-        <div class="detail">{{ cat.cname }}</div>
+        <div class="detail">{{ apply.cname }}</div>
         <el-tag type="info">毛色</el-tag>
-        <div class="detail">{{ cat.ccolor }}</div>
+        <div class="detail">{{ apply.ccolor }}</div>
         <el-tag type="info">猫咪信息</el-tag>
-        <div class="detail">{{ cat.cinfo }}</div>
+        <div class="detail">{{ apply.cinfo }}</div>
         <el-tag type="info">申请原因</el-tag>
-        <div class="detail">{{ cat.cinfo }}</div>
+        <div class="detail">{{ apply.ainfo }}</div>
         <el-tag type="info">申请状态</el-tag>
         <div class="detail">
-          <div v-if="cat.cisadopt==0" class="no">审核不通过~</div>
-          <div v-else-if="cat.cisadopt==1" class="wait">审核中</div>
-          <div v-else class="yes">审核通过</div>
+          <div v-if="apply.cisadopt==0" class="no">审核不通过~</div>
+          <div v-else-if="apply.cisadopt==1" class="wait">审核中</div>
+          <div v-else-if="i.cisadopt==2" class="yes">审核通过</div>
         </div>
       </div>
       <div class="btn">
-        <el-button type="warning" plain @click="cancel" :disabled="isDisabled">取消申请</el-button>
+        <el-button type="warning" plain @click="cancel(apply.aid)" :disabled="isDisabled">取消申请</el-button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import {starAPI} from "@/api";
+import {deleteApplyAPI} from "@/api";
 
 export default {
   name: 'applyInfo',
   data() {
     return {
       srcList: [
-        JSON.parse(localStorage.getItem('cat')).curl,
+        JSON.parse(localStorage.getItem('apply')).curl,
       ],
-      cat: {},
+      apply: {},
       isDisabled:false,
     };
   },
@@ -45,21 +45,15 @@ export default {
       window.history.go(-1);
     },
     indexs: async function () {
-      this.cat = JSON.parse(localStorage.getItem('cat'));
+      this.apply = JSON.parse(localStorage.getItem('apply'));
     },
-    async cancel(){
+    async cancel(aid){
       //删除贴子
-      this.$message.success("取消成功！");
-      this.isDisabled=true;
-    },
-    async star() {
-      this.form.uid = JSON.parse(localStorage.getItem('user')).uid;
-      this.form.cid = this.cat.cid;
-      const json = JSON.stringify(this.form);
-      const {data: res} = await starAPI(json);    //提交表单后获取到表单数据对象ruleForm然后使用axios传递给接口函数，得到一个返回值，是promise对象       //打印后端返回结果,用于验证编写是否成功，后续可删除这段！！！！！！！
+      const {data: res} = await deleteApplyAPI(aid)
       if (res.code === '200') {
-        this.$message.success("收藏成功！！")                            ////后端返回成功结果，提示后端返回的错误message或者也可以自己设置提示
+        this.$message.success("取消成功！");                          ////后端返回成功结果，提示后端返回的错误message或者也可以自己设置提示
       }
+      this.isDisabled=true;
     },
   },
   created: async function (i) {

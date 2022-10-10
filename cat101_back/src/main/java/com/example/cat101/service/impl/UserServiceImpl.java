@@ -31,7 +31,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public UserDto login(UserDto userDto) {
         // 用户密码 md5加密
-     //   userDto.setUpwd(SecureUtil.md5(userDto.getUpwd()));
+        userDto.setUpwd(SecureUtil.md5(userDto.getUpwd()));
         User one = confirmUserInfo(userDto);
         if (one != null) {
             BeanUtil.copyProperties(one, userDto, true);
@@ -47,7 +47,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public User register(UserDto userDto) {
         // 用户密码 md5加密
-      //  userDto.setUpwd(SecureUtil.md5(userDto.getUpwd()));
+        userDto.setUpwd(SecureUtil.md5(userDto.getUpwd()));
         User one = getUserInfo(userDto);
         if (one == null) {
             one = new User();

@@ -62,10 +62,10 @@ export default {
       //点击提交表单触发    校验和提交信息到后端接口
       this.$refs[formName].validate(async (valid) => {
         if (valid) {
-          console.log(this.ruleForm);                //打印出从表单提交来的需要向后端传递的数据，用于验证编写是否成功，后续可删除这段！！！！！！！
+          // console.log(this.ruleForm);                //打印出从表单提交来的需要向后端传递的数据，用于验证编写是否成功，后续可删除这段！！！！！！！
           const json = JSON.stringify(this.ruleForm);
           const {data: res} = await saveAPI(json);    //提交表单后获取到表单数据对象ruleForm然后使用axios传递给接口函数，得到一个返回值，是promise对象
-          console.log(res.code);                                        //打印后端返回结果,用于验证编写是否成功，后续可删除这段！！！！！！！
+          // console.log(res.code);                                        //打印后端返回结果,用于验证编写是否成功，后续可删除这段！！！！！！！
           if (res.code === '200') {
             await updateCatAPI(JSON.stringify(this.updateInfo));
             this.$message.success("申请成功！！")                            ////后端返回成功结果，提示后端返回的错误message或者也可以自己设置提示

@@ -69,7 +69,7 @@ export default {
 }
 
 .el-col:nth-child(4n+1) {
-  margin-left: 80px;
+  margin-left: 50px;
 }
 
 .bg-purple-dark {

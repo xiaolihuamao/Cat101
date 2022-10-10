@@ -74,7 +74,11 @@ const routes = [
                     {
                         path: 'applydb',
                         component: () => import ('@/views/Admin/applyDb.vue')
-                    }
+                    },
+                    {
+                        path: 'addcat',             //添加猫猫界面
+                        component: () => import ('@/views/Admin/addCat.vue'),
+                    },
                 ]
             },
             {
@@ -103,15 +107,7 @@ const routes = [
                 }
             },
             {
-                path: 'addcat',
-                component: () => import ('@/views/Admin/addCat.vue'),
-                meta: {
-                    isShow: true,
-                    span: 19
-                }
-            },
-            {
-                path: 'applyInfo',
+                path: 'applyInfo',          //显示申请表具体信息界面
                 component: () => import ('@/views/User/applyInfo.vue'),
                 meta: {
                     isShow: true,

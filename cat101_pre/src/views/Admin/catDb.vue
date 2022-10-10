@@ -1,38 +1,37 @@
 <template>
   <el-main>
     <el-table
-      :data="
+        :data="
         tableData.filter(
           (data) =>
             !search || data.name.toLowerCase().includes(search.toLowerCase())
         )
       "
-      style="width: 100%"
+        style="width: 100%"
     >
       <!-- 表头 -->
-      <el-table-column label="编号" prop="cid"> </el-table-column>
-      <el-table-column label="昵称" prop="cname"> </el-table-column>
-      <el-table-column label="花色" prop="ccolor"> </el-table-column>
-      <el-table-column label="图片" prop="curl"> </el-table-column>
-      <el-table-column label="备注" prop="cinfo"> </el-table-column>
-      <el-table-column label="领养状态" prop="cisadopt"> </el-table-column>
+      <el-table-column label="编号" prop="cid"></el-table-column>
+      <el-table-column label="昵称" prop="cname"></el-table-column>
+      <el-table-column label="花色" prop="ccolor"></el-table-column>
+      <el-table-column label="图片" prop="curl"></el-table-column>
+      <el-table-column label="描述" prop="cinfo"></el-table-column>
+      <el-table-column label="领养状态" prop="cisadopt"></el-table-column>
 
       <!-- 搜索查询框 -->
       <el-table-column align="right">
         <template slot="header" slot-scope="{}">
-          <el-link  target="_blank" @click="$router.push('/layout/addcat')" class="link">点击新增猫数据</el-link>
-<!--          <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />-->
+          <!--          <el-link target="_blank" @click="$router.push('/layout/admin/addcat')" class="link">点击新增猫数据</el-link>-->
+          <!--          <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />-->
+          操作
         </template>
         <!-- 删除和编辑按钮 -->
         <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)"
-            >编辑</el-button
-          >
           <el-button
-            size="mini"
-            type="danger"
-            @click="handleDelete(scope.$index, scope.row)"
-            >删除</el-button>
+              size="mini"
+              type="danger"
+              @click="handleDelete(scope.row)"
+          >删除
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -40,13 +39,14 @@
 </template>
 
 <script>
-import { catAPI } from "@/api";
+import {catAPI, deleteCatAPI} from "@/api";
 // import { catAPI } from "@/api";
 //用于向后端交互
 // import { url } from 'inspector';
 // import { type } from 'os';
 export default {
   name: "myCatdb",
+  inject: ['reload'],
   data() {
     return {
       tableData: [], //catList
@@ -58,15 +58,17 @@ export default {
   },
   methods: {
     getCat: async function () {
-      const { data: res } = await catAPI();
+      const {data: res} = await catAPI();
       this.tableData = res.data;
-      console.log(res.data);
-      //   if(res.code === '200'){
-      //     this.$message.success("成功获取数据")        用于测试
-      //   }else{
-      //     console.log("失败");
-      // }
+      // console.log(res.data);
     },
+    async handleDelete(cat) {
+      const {data: res} = await deleteCatAPI(cat.cid);
+      if (res.code === '200') {
+        this.$message.success("删除猫咪成功！");
+        this.reload();
+      }
+    }
     // addCat(catForm) {},
     // handleEdit(index, row) {
     //       console.log(index, row);
@@ -80,7 +82,6 @@ export default {
     //     {confirmButtonText:"继续",
     //     cancelButtonText:"取消",
     //     type: "warning"
-
     //     }).then(() => {
     //        const data = {cid:cid};      //我猜测这里要和后端数据库的字段名称相同
     //       axios
@@ -104,10 +105,10 @@ export default {
 
     //     console.log(index, row);
     //   },
-    //   handleDelete(index, row) {
-    //     console.log(index, row);
-    //   }
   },
+  activated() {
+    this.getCat();
+  }
 };
 </script>
 <style>
