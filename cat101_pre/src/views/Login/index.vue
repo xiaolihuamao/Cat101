@@ -1,6 +1,6 @@
 <template>
   <div class="register">
-    <div style="position: absolute; left: 650px; top: 200px;">
+    <div >
       <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
         <el-tabs class="header">
           <span slot="label" class="head">用户</span>
@@ -132,10 +132,18 @@ export default {
 <!-- < !-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .register {
-  width: 400px;
-  height: 470px;
-  margin-left: 485px;
+  width: 1672px;
+  height: 535px;
+  margin: 0 auto;
   padding-top: 140px;
+  position: relative;
+  background-color: #e7cc9e;
+  background-size:cover;  
+  /* /contain  */
+  background-image: url(@/assets/img/img.png);
+}
+.el-row {
+  background-color: #e7cc9e;
 }
 
 /* 改变重置按钮鼠标经过时的样式 */
@@ -162,7 +170,9 @@ export default {
   background-color: #dfd6b9;
   border-radius: 50px;
   position: absolute;
-  top: 0;
+  top: 150px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .log {

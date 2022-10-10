@@ -18,9 +18,9 @@
           <el-input v-model="form.cinfo" autocomplete="off"></el-input>
         </el-form-item>
 
-<!--        <el-form-item label="领养状态(0:未领养；1：以领养)" :label-width="formLabelWidth">-->
-<!--          <el-input v-model="form.cisadopt" autocomplete="off"></el-input>-->
-<!--        </el-form-item>-->
+       <!-- <el-form-item label="领养状态(0:未领养；1：已领养)" :label-width="formLabelWidth"> -->
+         <!-- <el-input v-model="form.cisadopt" autocomplete="off"></el-input> -->
+       <!-- </el-form-item> -->
         <el-form-item label="上传图片" prop="imageUrl">
           <el-upload
             action="http://localhost:8082/file/upload"
@@ -98,6 +98,7 @@ export default {
       await addcatAPI(this.json);
       // console.log(res.data);
       this.$message.success("猫咪添加成功！！");
+      this.$router.push('/layout/admin/catDb')
       // this.isDisabled=true;
     }
   },

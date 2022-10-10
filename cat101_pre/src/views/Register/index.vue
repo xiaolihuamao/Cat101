@@ -137,18 +137,24 @@ export default {
   height: 200px;
   background-color: #dfd6b9;
   position: absolute;
-  top: 200px;
-  left: 800px;
+  top: 150px;
+  left: 50%;
+  transform: translateX(-50%);
   padding: 80px;
   padding-left: 50px;
   border-radius: 30px;
 }
 
 .register {
-  width: 400px;
-  height: 450px;
-  margin-left: 485px;
+  width: 1672px;
+  height: 535px;
+  margin: 0px auto;
   padding-top: 140px;
+  position: relative;
+  background-color: #e7cc9e;
+  background-size:cover;  
+  /* /contain  */
+  background-image: url(@/assets/img/img.png);
 }
 
 /* 给链接文字改变样式，它向右浮动，然后字体颜色为黑色 */
