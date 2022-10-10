@@ -2,9 +2,11 @@ package com.example.cat101.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serializable;
+
 /**
  * <p>
  *
@@ -15,12 +17,12 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-  public class Cat implements Serializable {
+public class Cat implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-      @TableId(value = "Cid", type = IdType.AUTO)
-      private Integer cid;
+    @TableId(value = "Cid", type = IdType.AUTO)
+    private Integer cid;
 
     private String cname;
 

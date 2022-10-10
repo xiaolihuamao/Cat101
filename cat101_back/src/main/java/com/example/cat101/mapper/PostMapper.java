@@ -1,11 +1,11 @@
 package com.example.cat101.mapper;
 
-import com.example.cat101.entity.Post;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.cat101.entity.Post;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author redred

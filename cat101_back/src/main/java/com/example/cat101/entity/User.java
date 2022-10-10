@@ -2,9 +2,10 @@ package com.example.cat101.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -16,12 +17,12 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-  public class User implements Serializable {
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-      @TableId(value = "Uid", type = IdType.AUTO)
-      private Integer uid;//用户编号
+    @TableId(value = "Uid", type = IdType.AUTO)
+    private Integer uid;//用户编号
 
     private String uname;//账号
 

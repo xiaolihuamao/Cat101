@@ -1,11 +1,11 @@
 package com.example.cat101.service;
 
-import com.example.cat101.entity.Cat;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.cat101.entity.Cat;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author redred

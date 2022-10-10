@@ -1,4 +1,5 @@
 package com.example.cat101.config;
+
 import com.example.cat101.config.interceptor.JwtInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,10 +11,10 @@ public class InterceptorConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(jwtInterceptor())
-                .addPathPatterns("/**")  // À¹½ØËùÓÐÇëÇó£¬Í¨¹ýÅÐ¶ÏtokenÊÇ·ñºÏ·¨À´¾ö¶¨ÊÇ·ñÐèÒªµÇÂ¼
+                .addPathPatterns("/**")  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½Ð¶ï¿½tokenï¿½Ç·ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Òªï¿½ï¿½Â¼
                 .excludePathPatterns("/user/login", "/user/register", "/**/export", "/**/import", "/file/**"
-                      , "/webjars/**", "/v2/**", "/api", "/api-docs", "/api-docs/**")//·ÅÐÐµÇÂ¼×¢²á£¬µ¼Èëµ¼³öµÈ¹¦ÄÜ
-                .excludePathPatterns( "/**/*.html", "/**/*.js", "/**/*.css", "/**/*.woff", "/**/*.ttf");  // ·ÅÐÐ¾²Ì¬ÎÄ¼þ
+                        , "/webjars/**", "/v2/**", "/api", "/api-docs", "/api-docs/**")//ï¿½ï¿½ï¿½Ðµï¿½Â¼×¢ï¿½á£¬ï¿½ï¿½ï¿½ëµ¼ï¿½ï¿½ï¿½È¹ï¿½ï¿½ï¿½
+                .excludePathPatterns("/**/*.html", "/**/*.js", "/**/*.css", "/**/*.woff", "/**/*.ttf");  // ï¿½ï¿½ï¿½Ð¾ï¿½Ì¬ï¿½Ä¼ï¿½
 
     }
 

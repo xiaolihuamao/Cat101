@@ -1,43 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.cat101.mapper.AdoptMapper">
-<select id="searchAll" parameterType="Integer" resultType="com.example.cat101.controller.dto.AdoptPreDto">
-    select U.Uid,
-           U.Usex,
-           U.Upwd,
-           U.Uname,
-           U.Uinfo,
-           U.Usite,
-           U.Usrl,
-           U.Utel,
-           u.Utype,
-           U.Uxname,
-           a.Aid,
-           a.Ainfo,
-           c.Cid,
-           c.Cinfo,
-           c.Curl,
-           c.Ccolor,
-           c.Cname,
-           c.Cisadopt
-    from user U
-             left join adopt a on U.Uid = a.Uid
-             left join cat c on a.Cid = c.Cid
-    where U.Uid = #{uid};
-</select>
+    <select id="searchAll" parameterType="Integer" resultType="com.example.cat101.controller.dto.AdoptPreDto">
+        select U.Uid,
+               U.Usex,
+               U.Upwd,
+               U.Uname,
+               U.Uinfo,
+               U.Usite,
+               U.Usrl,
+               U.Utel,
+               u.Utype,
+               U.Uxname,
+               a.Aid,
+               a.Ainfo,
+               c.Cid,
+               c.Cinfo,
+               c.Curl,
+               c.Ccolor,
+               c.Cname,
+               c.Cisadopt
+        from user U
+                 left join adopt a on U.Uid = a.Uid
+                 left join cat c on a.Cid = c.Cid
+        where U.Uid = #{uid};
+    </select>
 
     <select id="searchByAid" parameterType="Integer" resultType="com.example.cat101.controller.dto.AdoptPreDto">
-        select
-            a.Aid,
-            a.Ainfo,
-            c.Cid,
-            c.Cinfo,
-            c.Curl,
-            c.Ccolor,
-            c.Cname,
-            c.Cisadopt
-        from  adopt a
-                  left join cat c on a.Cid = c.Cid
-        where a.Aid=#{aid};
+        select a.Aid,
+               a.Ainfo,
+               c.Cid,
+               c.Cinfo,
+               c.Curl,
+               c.Ccolor,
+               c.Cname,
+               c.Cisadopt
+        from adopt a
+                 left join cat c on a.Cid = c.Cid
+        where a.Aid = #{aid};
     </select>
 </mapper>

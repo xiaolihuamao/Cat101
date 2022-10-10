@@ -1,15 +1,14 @@
 package com.example.cat101.service;
 
-import com.example.cat101.controller.dto.UserGatherDto;
-import com.example.cat101.entity.Cat;
-import com.example.cat101.entity.Gather;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.cat101.controller.dto.UserGatherDto;
+import com.example.cat101.entity.Gather;
 
 import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author redred

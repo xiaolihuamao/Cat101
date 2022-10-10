@@ -1,8 +1,12 @@
 package com.example.cat101.controller.dto;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
+@Getter
+@Setter
 public class AdoptPreDto {
     private Integer aid;
 

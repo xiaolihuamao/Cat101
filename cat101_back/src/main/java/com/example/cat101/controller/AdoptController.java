@@ -1,19 +1,16 @@
 package com.example.cat101.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.cat101.common.Result;
 import com.example.cat101.controller.dto.AdoptPreDto;
+import com.example.cat101.entity.Adopt;
+import com.example.cat101.service.IAdoptService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
-
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.example.cat101.service.IAdoptService;
-import com.example.cat101.entity.Adopt;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
@@ -52,6 +49,12 @@ public class AdoptController {
     @GetMapping("/{uid}")
     public Result findAll(@PathVariable Integer uid) {
         List<AdoptPreDto> list = adoptService.searchAll(uid);
+        return Result.success(list);
+    }
+
+    @GetMapping("/find")
+    public Result findAdopt(){
+        List<Adopt>list=adoptService.list();
         return Result.success(list);
     }
 

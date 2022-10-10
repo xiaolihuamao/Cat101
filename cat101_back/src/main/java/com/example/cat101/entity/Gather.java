@@ -2,11 +2,11 @@ package com.example.cat101.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
-import java.util.Date;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -18,12 +18,12 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-  public class Gather implements Serializable {
+public class Gather implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-      @TableId(value = "Gid", type = IdType.AUTO)
-      private Integer gid;
+    @TableId(value = "Gid", type = IdType.AUTO)
+    private Integer gid;
 
     private Integer uid;
 

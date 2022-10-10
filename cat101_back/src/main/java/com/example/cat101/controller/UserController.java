@@ -2,24 +2,23 @@ package com.example.cat101.controller;
 
 
 import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.cat101.common.Constants;
 import com.example.cat101.common.Result;
 import com.example.cat101.controller.dto.UserDto;
-import com.example.cat101.exception.ServiceException;
+import com.example.cat101.entity.User;
+import com.example.cat101.service.IUserService;
 import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
 import java.util.List;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.example.cat101.service.IUserService;
-import com.example.cat101.entity.User;
-
-import org.springframework.web.bind.annotation.RestController;
 //eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxIiwiZXhwIjoxNjY0ODcxNzI4fQ.foLoQ5ihSURnSxDd_L8Vjtn15_2oR7tm12DMQlJ7cFA
 //eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyIiwiZXhwIjoxNjY0ODk1NjAxfQ.seni_MPiZeHfpoUbs6-KX_0hV0qQ39X2efvLNYk3of4
+
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author redred
@@ -64,25 +63,27 @@ public class UserController {
 
     @GetMapping("/page")
     public Result findPage(@RequestParam Integer pageNum,
-                                @RequestParam Integer pageSize) {
+                           @RequestParam Integer pageSize) {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.orderByDesc("Uid");
         return Result.success(userService.page(new Page<>(pageNum, pageSize), queryWrapper));
     }
+
     @PostMapping("/login")
-    public  Result login(@RequestBody UserDto userDto){
-        if (StrUtil.isBlank(userDto.getUname())||StrUtil.isBlank(userDto.getUpwd())){
-            return Result.error(Constants.CODE_400,"参数不足错误");
+    public Result login(@RequestBody UserDto userDto) {
+        if (StrUtil.isBlank(userDto.getUname()) || StrUtil.isBlank(userDto.getUpwd())) {
+            return Result.error(Constants.CODE_400, "参数不足错误");
         }
-        UserDto dto=userService.login(userDto);
+        UserDto dto = userService.login(userDto);
         return Result.success(dto);
     }
+
     @PostMapping("/register")
     public Result register(@RequestBody UserDto userDTO) {
         String username = userDTO.getUname();
         String password = userDTO.getUpwd();
-        if (StrUtil.isBlank(username)||StrUtil.isBlank(password)){
-            return Result.error(Constants.CODE_400,"参数不足错误");
+        if (StrUtil.isBlank(username) || StrUtil.isBlank(password)) {
+            return Result.error(Constants.CODE_400, "参数不足错误");
         }
         return Result.success(userService.register(userDTO));
     }

@@ -1,14 +1,12 @@
 package com.example.cat101.service;
 
-import com.example.cat101.common.Result;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.cat101.controller.dto.UserDto;
 import com.example.cat101.entity.User;
-import com.baomidou.mybatisplus.extension.service.IService;
-import org.apache.ibatis.annotations.Select;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author redred

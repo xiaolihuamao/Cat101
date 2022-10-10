@@ -2,14 +2,15 @@ package com.example.cat101.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
-import java.time.LocalDate;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+import java.time.LocalDate;
+
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author redred
@@ -17,12 +18,12 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-  public class Post implements Serializable {
+public class Post implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-      @TableId(value = "Pid", type = IdType.AUTO)
-      private Integer pid;
+    @TableId(value = "Pid", type = IdType.AUTO)
+    private Integer pid;
 
     private String purl;
 

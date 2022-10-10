@@ -1,11 +1,10 @@
 package com.example.cat101.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.cat101.controller.dto.UserGatherDto;
-import com.example.cat101.entity.Cat;
 import com.example.cat101.entity.Gather;
 import com.example.cat101.mapper.GatherMapper;
 import com.example.cat101.service.IGatherService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

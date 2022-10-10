@@ -1,15 +1,14 @@
 package com.example.cat101.mapper;
 
-import com.example.cat101.controller.dto.UserGatherDto;
-import com.example.cat101.entity.Cat;
-import com.example.cat101.entity.Gather;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.cat101.controller.dto.UserGatherDto;
+import com.example.cat101.entity.Gather;
 
 import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author redred
