@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="btn">
-        <el-button type="warning" plain @click="cancel">取消申请</el-button>
+        <el-button type="warning" plain @click="cancel" :disabled="isDisabled">取消申请</el-button>
       </div>
     </div>
   </div>
@@ -37,6 +37,7 @@ export default {
         JSON.parse(localStorage.getItem('cat')).curl,
       ],
       cat: {},
+      isDisabled:false,
     };
   },
   methods: {
@@ -48,6 +49,8 @@ export default {
     },
     async cancel(){
       //删除贴子
+      this.$message.success("取消成功！");
+      this.isDisabled=true;
     },
     async star() {
       this.form.uid = JSON.parse(localStorage.getItem('user')).uid;
