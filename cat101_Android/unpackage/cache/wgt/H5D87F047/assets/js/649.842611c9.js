@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunkcat101_pre"]=self["webpackChunkcat101_pre"]||[]).push([[649],{6649:function(r,e,t){t.r(e),t.d(e,{default:function(){return i}});var n=function(){var r=this;r._self._c;return r._m(0)},a=[function(){var r=this,e=r._self._c;return e("div",[r._v(" Daily.vue 这里可以增加一个发布帖子的 "),e("iframe",{attrs:{src:"",frameborder:"0"}})])}],u={name:"myDaily"},c=u,s=t(1001),f=(0,s.Z)(c,n,a,!1,null,"88ab5098",null),i=f.exports}}]);
-//# sourceMappingURL=649.842611c9.js.map
