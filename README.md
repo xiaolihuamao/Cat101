@@ -34,6 +34,24 @@
 ## 项目亮点
 * 实现了安卓app的使用
 * 实现了md5加密
+## 技术栈
+本次项目是前后端分离项目，实现了猫咪领养系统前台和后台界面展示以及与数据库的交互。
+* 后端：
+  * 采用SpringBoot（version:2.7.3）框架实现业务接口编写
+  * 使用Mybatis-Plus(version:3.5.2)框架设计持久化层sql编写，主要实现语言为Java8。
+  * 主要开发工具为：IntelliJ IDEA
+  * 数据库为：MySql数据库
+* 前端：
+  * 语言的选择：html、css、javascript
+  * 构架框架：vue全家桶
+  * vue@2.6.14，基于MVVM框架，采用虚拟dom，双向数据绑定，数据驱动视图，生态丰富。
+  * vuex@3.6.2，vue的状态管理器，实现组件间通信。
+  * vue-router@3.5.2，使用vue官方路由管理器，实现SPA。
+  * UI框架：elementUI@2.15.10，饿了么推出的UI组件库，便于我们快速搭建页面整体呈现。
+  * 构建工具：webpack，用于前端资源模块化管理和打包。
+  * http请求库：axios@0.27.2，基于promise的网络请求库，用于向后端发送请求，实现交互。
+
+---
 
 项目代码移动端Github地址：https://github.com/isSJa/Cat101_Android.git
 
