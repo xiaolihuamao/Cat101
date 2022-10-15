@@ -132,16 +132,24 @@ export default {
 <!-- < !-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .register {
-  width: 1503px;
-  height: 535px;
+  /*width: 1672px;*/
+  height: 600px;
   margin: 0 auto;
-  padding-top: 140px;
+  /*padding-top: 140px;*/
   position: relative;
   background-color: #e7cc9e;
-  background-size:cover;  
+  background-size:cover;
   /* /contain  */
-  background-image: url(@/assets/img/img.png);
+  background-image: url(@/assets/img/bg.png);
+  background-repeat: no-repeat;
 }
+/*.register::before{*/
+/*  content: "";*/
+/*  position: absolute; !* 一定要用绝对定位 *!*/
+/*  width: 100%;*/
+/*  height: 100%;*/
+/*  backdrop-filter: blur(3px); !* 模糊半径 *!*/
+/*}*/
 .el-row {
   background-color: #e7cc9e;
 }
@@ -168,7 +176,7 @@ export default {
   width: 380px;
   height: 250px;
   background-color: #dfd6b9;
-  border-radius: 50px;
+  border-radius: 40px;
   position: absolute;
   top: 150px;
   left: 50%;
@@ -182,8 +190,8 @@ export default {
   height: 200px;
   width: 370px;
   position: relative;
-  right: 24px;
-  top: 20px;
+  right: 28px;
+  top: 35px;
 }
 
 

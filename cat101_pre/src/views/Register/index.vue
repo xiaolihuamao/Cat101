@@ -16,6 +16,10 @@
         <el-form-item label="确认密码" prop="checkPass">
           <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
         </el-form-item>
+        <!--电话号码-->
+        <el-form-item label="电话号码" prop="utel">
+          <el-input type="text" onkeyup = "value=value.replace(/[^\d]/g,'')" v-model="ruleForm.utel" autocomplete="off"></el-input>
+        </el-form-item>
         <!-- 下面是提交和重置按钮，我改变了按钮的样式 -->
         <el-form-item>
           <el-button type="primary" @click="submitForm('ruleForm')" style="margin: auto;background-color: #d7cd94;
@@ -56,6 +60,15 @@ export default {
       //   }
       // }, 1000);
     };
+    var checkUtel=(rule,value,callback)=>{
+      if(!value){
+        return callback(new Error("电话号码不能为空"));
+      }else if(value.length!=11){
+        callback("请输入正确的电话号码");
+      }else{
+        callback();
+      }
+    }
     var validatePass = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请输入密码"));
@@ -81,7 +94,7 @@ export default {
         upwd: "",
         uxname:"123",
         usex:"1",
-        utel:"13412345678",
+        utel:"",
         usite:"1",
         utype:"0",
         usrl:"1",
@@ -93,6 +106,7 @@ export default {
         upwd: [{ validator: validatePass, trigger: "blur" }],
         checkPass: [{ validator: validatePass2, trigger: "blur" }],
         uname: [{ validator: checkUname, trigger: "blur" }],
+        utel: [{ validator: checkUtel, trigger: "blur" }],
       },
     };
   },
@@ -134,29 +148,39 @@ export default {
 <style scoped>
 .inset {
   width: 400px;
-  height: 200px;
+  height: 240px;
   background-color: #dfd6b9;
   position: absolute;
   top: 150px;
   left: 50%;
   transform: translateX(-50%);
   padding: 80px;
-  padding-left: 50px;
+  padding-top: 40px;
+  padding-left: 30px;
   border-radius: 30px;
 }
 
 .register {
-  width: 1503px;
-  height: 535px;
+  /*width: 1672px;*/
+  width: 100%;
+  height: 600px;
   margin: 0px auto;
-  padding-top: 140px;
+  /*padding-top: 140px;*/
   position: relative;
   background-color: #e7cc9e;
   background-size:cover;  
   /* /contain  */
-  background-image: url(@/assets/img/img.png);
+  background-image: url(@/assets/img/bg.png);
+  background-repeat: no-repeat;
 }
-
+/*.register::before{*/
+/*  content: "";*/
+/*  position: absolute; !* 一定要用绝对定位 *!*/
+/*  width: 100%;*/
+/*  height: 100%;*/
+/*  background-color: rgba(256,256,256,0.15);!*白色滤镜*!*/
+/*  backdrop-filter: blur(1px); !* 模糊半径 *!*/
+/*}*/
 /* 给链接文字改变样式，它向右浮动，然后字体颜色为黑色 */
 .el-link {
   float: right;
