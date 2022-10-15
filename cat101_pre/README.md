@@ -1,24 +1,57 @@
-# cathelping
+# 流浪猫球（pc端代码）
+## 访问链接
+* 可预览的产品链接 for 浏览器查看：
+  http://39.105.141.55/
+* 下载地址 for 终端设备：  
+  https://vkceyugu.cdn.bspapp.com/VKCEYUGU-2b57c971-7894-4925-85ff-3b5d612cc3c1/4ee23b9f-1693-4b2e-b807-f6bb08aace7d.apk
 
-## Project setup
-```
-npm install
-```
+## 背景分析
+* 当下校园及社区流浪猫领养系统不够完善
+* 缺乏相关平台实现对校园及其周边的社区的流浪猫的信息的整合及管理
+* 且随着越来越多的人选择来养一只动物来作为陪伴，领养流浪猫的行为也更加普遍
+* 领养流浪猫的流程仍然是很多人的盲点
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+基于以上现状，小组成员决定开发一个可以实现对流浪猫管理和规范化流浪猫领养行为的终端系统。
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## 项目功能
+* 管理人员实现对流浪猫信息的管理：添加流浪猫，对流浪猫的信息进行修改，删除流浪猫信息
+* 用户对流浪猫信息进行浏览：用户在进入网页时可以直接对现有的流浪猫信息进行浏览
+* 用户可以点解进入某只猫的界面来了解它的详细信息
+* 可以点击收藏来实现对这只猫的收藏。
+* 用户可以进行注册和登录，
+* 在注册时用户可以进行两次输入密码来确认密码，如果两次密码输入结果不同会进行提醒，用户注册后将相关用户信息保存到数据库中
+* 用户在登录时输入密码，错误也将提醒密码错误
+* 用户申请领养流浪猫：用户在猫的详情页面上可以点击申请领养，并填写领养原因，提交申请。
+* 管理人员对用户提交的领养申请进行审核
+* 管理员可以浏览用户提交的申请表，并选择是否审核通过
+## 项目难点
+* token验证登陆
+* 前后端的跨域实现
+* 安卓和web端跨端实现
+## 项目亮点
+* 实现了安卓app的使用
+* 实现了md5加密
+## 技术栈
+本次项目是前后端分离项目，实现了猫咪领养系统前台和后台界面展示以及与数据库的交互。
+* 后端：
+    * 采用SpringBoot（version:2.7.3）框架实现业务接口编写
+    * 使用Mybatis-Plus(version:3.5.2)框架设计持久化层sql编写，主要实现语言为Java8。
+    * 主要开发工具为：IntelliJ IDEA
+    * 数据库为：MySql数据库
+* 前端：
+    * 语言的选择：html、css、javascript
+    * 构架框架：vue全家桶
+    * vue@2.6.14，基于MVVM框架，采用虚拟dom，双向数据绑定，数据驱动视图，生态丰富。
+    * vuex@3.6.2，vue的状态管理器，实现组件间通信。
+    * vue-router@3.5.2，使用vue官方路由管理器，实现SPA。
+    * UI框架：elementUI@2.15.10，饿了么推出的UI组件库，便于我们快速搭建页面整体呈现。
+    * 构建工具：webpack，用于前端资源模块化管理和打包。
+    * http请求库：axios@0.27.2，基于promise的网络请求库，用于向后端发送请求，实现交互。
 
-### Lints and fixes files
-```
-npm run lint
-```
+---
+项目代码网页端Github地址：https://github.com/isSJa/Terminal_101_Trainee.git
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+项目代码移动端Github地址：https://github.com/isSJa/Cat101_Android.git
+
+
+> Made By 终端101练习生

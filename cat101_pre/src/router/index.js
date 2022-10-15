@@ -28,6 +28,14 @@ const routes = [
                 }
             },
             {
+                path: 'self',           //个人中心
+                component: () => import ('@/views/self.vue'),
+                meta: {
+                    isShow: true,
+                    span: 19
+                }
+            },
+            {
                 path: 'info',           //详情页
                 component: () => import ('@/views/User/Info.vue'),
                 meta: {

@@ -66,42 +66,6 @@ export default {
         this.reload();
       }
     }
-    // addCat(catForm) {},
-    // handleEdit(index, row) {
-    //       console.log(index, row);
-    //     },
-    //     handleDelete(index, row) {
-    //       console.log(index, row);
-    //     }
-    // handleEdit(index, row) {
-    //     this.$confirm("你正在操作流浪猫数据库，将永久删除次条流浪猫的信息，是否继续操作？",
-    //     "警告",
-    //     {confirmButtonText:"继续",
-    //     cancelButtonText:"取消",
-    //     type: "warning"
-    //     }).then(() => {
-    //        const data = {cid:cid};      //我猜测这里要和后端数据库的字段名称相同
-    //       axios
-    //       .post("/cat",data)            //我猜测这里是要写后端给的接口地址
-    //       .then(response =>{
-    //         this.fetchdata();          // 删除数据后重新获取数据
-    //       })
-    //       .catch(() => {
-    //         this.$message({
-    //           type: "warning",
-    //           message: "请求失败，请检查网络设置"
-    //         })
-    //       });
-    //     }).catch(() =>{
-    //      this.message({
-    //         type: "info",
-    //         message:"已取消删除"
-    //      })
-
-    //     })
-
-    //     console.log(index, row);
-    //   },
   },
   activated() {
     this.getCat();

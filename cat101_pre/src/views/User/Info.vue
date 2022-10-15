@@ -20,7 +20,7 @@
       </div>
       <div class="btn">
 <!--        TODO:申请完成后，能将按钮 disabled 然后文字为：已领养-->
-        <el-button type="warning" plain @click="$router.push('/layout/apply')">申请领养</el-button>
+        <el-button type="warning" plain @click="$router.push('/layout/apply')" :disabled="isDisabled">申请领养</el-button>
       </div>
     </div>
   </div>
@@ -41,12 +41,14 @@ export default {
       form:{
         uid:'',
         cid:'',
-      }
+      },
+      isDisabled:true
     };
   },
   methods: {
     indexs: async function () {
       this.cat=JSON.parse(localStorage.getItem('cat'));
+      if(this.cat.cisadopt==0)this.isDisabled=false;
     },
     async star() {
       this.form.uid = JSON.parse(localStorage.getItem('user')).uid;
