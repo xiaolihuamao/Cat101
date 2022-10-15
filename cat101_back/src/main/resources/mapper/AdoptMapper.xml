@@ -39,4 +39,28 @@
                  left join cat c on a.Cid = c.Cid
         where a.Aid = #{aid};
     </select>
+
+    <select id="find" resultType="com.example.cat101.controller.dto.AdoptPreDto">
+        select U.Uid,
+               U.Usex,
+               U.Upwd,
+               U.Uname,
+               U.Uinfo,
+               U.Usite,
+               U.Usrl,
+               U.Utel,
+               u.Utype,
+               U.Uxname,
+               a.Aid,
+               a.Ainfo,
+               c.Cid,
+               c.Cinfo,
+               c.Curl,
+               c.Ccolor,
+               c.Cname,
+               c.Cisadopt
+        from user U
+                 right join adopt a on U.Uid = a.Uid
+                 left join cat c on a.Cid = c.Cid;
+    </select>
 </mapper>

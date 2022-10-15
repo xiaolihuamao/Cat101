@@ -19,4 +19,6 @@ public interface AdoptMapper extends BaseMapper<Adopt> {
     List<AdoptPreDto> searchAll(Integer uid);
 
     AdoptPreDto searchByAid(Integer aid);
+
+    List<AdoptPreDto> find();
 }

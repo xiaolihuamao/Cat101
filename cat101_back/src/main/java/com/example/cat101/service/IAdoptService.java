@@ -19,4 +19,6 @@ public interface IAdoptService extends IService<Adopt> {
     List<AdoptPreDto> searchAll(Integer uid);
 
     AdoptPreDto searchByAid(Integer aid);
+
+    List<AdoptPreDto> find();
 }

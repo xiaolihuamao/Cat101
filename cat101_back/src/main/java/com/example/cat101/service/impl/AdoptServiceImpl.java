@@ -32,4 +32,9 @@ public class AdoptServiceImpl extends ServiceImpl<AdoptMapper, Adopt> implements
     public AdoptPreDto searchByAid(Integer aid) {
         return adoptMapper.searchByAid(aid);
     }
+
+    @Override
+    public List<AdoptPreDto> find() {
+        return adoptMapper.find();
+    }
 }
