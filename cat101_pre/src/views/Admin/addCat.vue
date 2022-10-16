@@ -72,12 +72,6 @@ export default {
     };
   },
   methods: {
-    // handleAvatarSuccess(file, fileList) {
-    //     console.log(file,fileList)
-    //     this.curl = res.data.final_fileName;
-    //     // sessionStorage.setItem("curl",this.curl)
-    //     alert(this.curl)
-    // },
     handleAvatarSuccess(res, file) {
         console.log(res)
         this.form.curl = res

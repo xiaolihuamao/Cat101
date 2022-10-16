@@ -132,7 +132,7 @@ export default {
 <!-- < !-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .register {
-  width: 1672px;
+  width: 1503px;
   height: 535px;
   margin: 0 auto;
   padding-top: 140px;

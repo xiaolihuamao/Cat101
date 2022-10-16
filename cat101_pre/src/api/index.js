@@ -24,19 +24,9 @@ import request from "@/utils/request";   //引入自定义的axios函数
 //  JSON.stringify({ uname, upwd, uxname,usex,utel,usite,utype })
 export const registerAPI = (json) => {     //,usrl,uinfo
     return request({
-        // headers: {
-        //     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-        //   },
         url: '/user/register',       //注册接口地址：以向该接口发送注册表单的数据，放入用户信息表获得返回结果           跟后端沟通！！！！！！！
         method: 'POST',
         data: json,
-
-
-        // header:{
-        //     'Content-Type':'application/json'  //如果写成contentType会报错
-        // }
-
-
     })
 }
 //登录请求 接口，定义登录按钮点击后，向后端发送请求的函数，参数是表单提交的数据

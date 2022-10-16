@@ -146,7 +146,7 @@ export default {
 }
 
 .register {
-  width: 1672px;
+  width: 1503px;
   height: 535px;
   margin: 0px auto;
   padding-top: 140px;

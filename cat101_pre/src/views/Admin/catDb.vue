@@ -40,10 +40,7 @@
 
 <script>
 import {catAPI, deleteCatAPI} from "@/api";
-// import { catAPI } from "@/api";
 //用于向后端交互
-// import { url } from 'inspector';
-// import { type } from 'os';
 export default {
   name: "myCatdb",
   inject: ['reload'],

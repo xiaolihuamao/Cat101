@@ -2,6 +2,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import layOut from "../Layout/index";
+import myLogin from "@/views/Login";
 import myUser from "@/views/User";
 
 //调用Vue.use()函数，把VueRouter安装为Vue的插件
@@ -15,7 +16,7 @@ const routes = [
     },
     {
         path: "/layout",
-        redirect: "/layout/user",
+        redirect: "/layout/login",
         component: layOut,
         children: [ 					 // 通过children配置子级路由
             {
@@ -52,7 +53,7 @@ const routes = [
             },
             {
                 path: 'login',	        //这里是登录页面
-                component: () => import ('@/views/Login'),
+                component: myLogin,
                 meta: {
                     isShow: false,
                     span: 24

@@ -4,7 +4,7 @@
       <div v-for="i in catsALL" :key="i.cid">
         <el-col :span="5">
           <div class="grid-content">
-            <el-image :src="src" @click="turnInto(i.cid)"></el-image>
+            <el-image :src=(i.curl) @click="turnInto(i.cid)"></el-image>
                         <div class="title">{{ i.cname }}</div>
                         <div class="status">{{ i.ccolor }}</div>
                         <div class="content">{{ i.cinfo }}</div>
@@ -22,7 +22,6 @@ export default {
   name: "myUser",
   data() {
     return {
-      src: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg2.doubanio.com%2Fview%2Fgroup_topic%2Fl%2Fpublic%2Fp449604943.jpg&refer=http%3A%2F%2Fimg2.doubanio.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1667854064&t=28241997be6219631810ae853138bbda",
       catNum: 0,
       catsALL: [],
     };
@@ -33,6 +32,8 @@ export default {
       if (res.code === '200') {
         this.catNum = res.data.length;
         this.catsALL = res.data;
+        localStorage.setItem('allCat',JSON.stringify(res.data));
+        // console.log(this.catsALL[0].curl);
         // console.log(this.catsALL[0].cname);
       } else {
         this.$message.error(res.msg) //后端返回失败结果，提示后端返回的错误message或者也可以自己设置提示

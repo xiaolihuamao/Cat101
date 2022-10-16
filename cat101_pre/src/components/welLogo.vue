@@ -20,8 +20,8 @@
         <el-button size="small" round @click="$router.push('/layout/login')">登录
         </el-button>
       </div>
-      <!-- 新消息显示按钮，可跳转到另一个消息页面   注意：登录前不显示 v-if="false"-->
-      <div style="float: right; width: 84px; height: 40px" v-if=$store.state.isNew
+      <!-- 退出按钮"-->
+      <div style="float: right; width: 84px; height: 40px" v-if="$store.state.isNew"
            @click="quit">
         <!--        <el-badge :value="2" class="item" type="warning">-->
         <el-badge class="item" type="warning">
@@ -49,11 +49,19 @@ export default {
   },
   methods: {
     quit(){
-      this.$router.push('/layout/user');
-      this.$store.isNew = false;
-      this.$store.state.isLogin = true;
+      
+      localStorage.removeItem("user");
+      this.$store.commit('cisLogin')
+      this.$store.commit('cisNew')
+      console.log(this.$store.state.isLogin,this.$store.state.isNew); // 测试点击退出后能否再次调用判断方法根据缓存中是否有user值来改变button的隐藏。
+      this.$router.push('/layout/login');
     }
-  }
+  },
+  created() {
+    this.$store.commit('cisLogin')
+    this.$store.commit('cisNew')
+    console.log(this.$store.state.isLogin,this.$store.state.isNew); //测试是否能根据缓存中是否有user键来改变button的显示隐藏
+				},
 };
 </script>
 
