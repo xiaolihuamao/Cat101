@@ -8,6 +8,10 @@
         <el-form-item label="账号" prop="uname">
           <el-input v-model="ruleForm.uname" autocomplete="off" required="true"></el-input>
         </el-form-item>
+        <!-- 昵称 -->
+        <el-form-item label="昵称" prop="uxname">
+          <el-input v-model="ruleForm.uxname" autocomplete="off" required="true"></el-input>
+        </el-form-item>
         <!-- 密码 -->
         <el-form-item label="密码" prop="upwd">
           <el-input type="password" v-model="ruleForm.upwd" autocomplete="off"></el-input>
@@ -48,17 +52,13 @@ export default {
       }else {
             callback();
           }
-      // setTimeout(() => {
-      //   if (!Number.isInteger(value)) {
-      //     callback(new Error("请输入数字值"));
-      //   } else {
-      //     if (value < 18) {
-      //       callback(new Error("必须年满18岁"));
-      //     } else {
-      //       callback();
-      //     }
-      //   }
-      // }, 1000);
+    };
+    var checkUxname = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error("昵称不能为空"));
+      }else {
+        callback();
+      }
     };
     var checkUtel=(rule,value,callback)=>{
       if(!value){
@@ -92,7 +92,7 @@ export default {
       ruleForm: {
         uname:"",
         upwd: "",
-        uxname:"123",
+        uxname:"",
         usex:"1",
         utel:"",
         usite:"1",
@@ -106,6 +106,7 @@ export default {
         upwd: [{ validator: validatePass, trigger: "blur" }],
         checkPass: [{ validator: validatePass2, trigger: "blur" }],
         uname: [{ validator: checkUname, trigger: "blur" }],
+        uxname: [{ validator: checkUxname, trigger: "blur" }],
         utel: [{ validator: checkUtel, trigger: "blur" }],
       },
     };
@@ -148,7 +149,7 @@ export default {
 <style scoped>
 .inset {
   width: 400px;
-  height: 240px;
+  height: 300px;
   background-color: #dfd6b9;
   position: absolute;
   top: 150px;
@@ -168,7 +169,7 @@ export default {
   /*padding-top: 140px;*/
   position: relative;
   background-color: #e7cc9e;
-  background-size:cover;  
+  background-size:cover;
   /* /contain  */
   background-image: url(@/assets/img/bg.png);
   background-repeat: no-repeat;

@@ -8,14 +8,11 @@
         <el-form-item label="账号" prop="uname">
           <el-input v-model="ruleForm.uname" autocomplete="off" required="true" disabled></el-input>
         </el-form-item>
-        <!-- 密码 -->
-        <button @click="isShow=true;pwdIsDisabled=false" style="margin-left: 330px;">修改密码</button>
-        <el-form-item label="密码" prop="upwd">
-          <el-input type="password" v-model="ruleForm.upwd" autocomplete="off" :disabled="pwdIsDisabled"></el-input>
-        </el-form-item>
-        <!-- 确认密码 -->
-        <el-form-item label="确认密码" prop="checkPass" v-show="isShow">
-          <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
+        <!-- 昵称 -->
+        <button @click="uxnameIsDisabled=false" style="margin-left: 330px;">修改昵称</button>
+        <el-form-item label="昵称" prop="uxname">
+          <el-input type="text" v-model="ruleForm.uxname" autocomplete="off"
+                    :disabled="uxnameIsDisabled"></el-input>
         </el-form-item>
         <!--电话号码-->
         <button @click="telIsDisabled=false" style="margin-left: 330px;">修改电话</button>
@@ -39,15 +36,23 @@
 
 
 <script>
-import {registerAPI, updateSelfAPI} from "@/api";
+import {registerAPI, searchUserAPI, updateSelfAPI} from "@/api";
 
 export default {
   name: "myRegister",
+  inject: ["reload"],
 // 数据
   data() {
     var checkUname = (rule, value, callback) => {
       if (!value) {
         return callback(new Error("账号不能为空"));
+      } else {
+        callback();
+      }
+    };
+    var checkUxname = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error("昵称不能为空"));
       } else {
         callback();
       }
@@ -61,75 +66,51 @@ export default {
         callback();
       }
     }
-    var validatePass = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请输入密码"));
-      } else {
-        if (this.ruleForm.checkPass !== "") {
-          this.$refs.ruleForm.validateField("checkPass");
-        }
-        callback();
-      }
-    };
-    var validatePass2 = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请再次输入密码"));
-      } else if (value !== this.ruleForm.upwd) {
-        callback(new Error("两次输入密码不一致!"));
-      } else {
-        callback();
-      }
-    };
     return {
       user: JSON.parse(localStorage.getItem('user')),
       ruleForm: {
         uid:"",
         uname: "",
-        upwd: "",
+        uxname:"",
         utel: "",
-        checkPass:""
       },
       rules: {
-        upwd: [{validator: validatePass, trigger: "blur"}],
-        checkPass: [{validator: validatePass2, trigger: "blur"}],
         uname: [{validator: checkUname, trigger: "blur"}],
+        uxname: [{validator: checkUxname, trigger: "blur"}],
         utel: [{validator: checkUtel, trigger: "blur"}],
       },
       isShow: false,
-      pwdIsDisabled: true,
+      uxnameIsDisabled: true,
       telIsDisabled: true,
     };
   },
-
+  created() {
+    this.indexs();
+  },
   // 方法
   methods: {
     indexs() {
+      if(JSON.parse(localStorage.getItem('user'))==null){
+        this.$message.error("无token，请登录！") //后端返回失败结果，提示后端返回的错误message或者也可以自己设置提示
+        return;
+      }
       this.ruleForm.uname = this.user.uname;
-      this.ruleForm.upwd = this.user.upwd;
+      this.ruleForm.uxname = this.user.uxname;
       this.ruleForm.utel = this.user.utel;
       this.ruleForm.uid=this.user.uid;
     },
 //点击提交表单触发    校验和提交信息到后端接口
     async submitForm(formName) {
-      delete this.ruleForm.checkPass;
-      if(this.pwdIsDisabled)
-        delete this.ruleForm.upwd;
-      else {
-        if(this.ruleForm.checkPass!=this.ruleForm.upwd){
-          this.$message.warning("两次密码不一致！");
-          return;
-        }
-      }
       const json = JSON.stringify(this.ruleForm);
-      const {data :res} = await updateSelfAPI(json);    //提交表单后获取到表单数据对象ruleForm然后使用axios传递给接口函数，得到一个返回值，是promise对象
-      console.log(json);
-      console.log(res.code);                                        //打印后端返回结果,用于验证编写是否成功，后续可删除这段！！！！！！！
+      const {data :res} = await updateSelfAPI(json);    //提交表单后获取到表单数据对象ruleForm然后使用axios传递给接口函数，得到一个返回值，是promise对象       //打印后端返回结果,用于验证编写是否成功，后续可删除这段！！！！！！！
       if(res.code === '200') {
         this.$message.success("修改成功！！")                            ////后端返回成功结果，提示后端返回的错误message或者也可以自己设置提示
-        this.indexs();
-        this.isShow=false;
-        this.telIsDisabled=true;
-        this.pwdIsDisabled=true;
+        const {data :res}=await searchUserAPI(this.user.uid);
+        const token=this.user.token;//取出token
+        this.user=res.data;
+        this.user.token=token;//添加token
+        localStorage.setItem('user',JSON.stringify(this.user));
+        this.reload();
       }else{
         this.$message.error(res.msg) ////后端返回失败结果，提示后端返回的错误message或者也可以自己设置提示
       }
@@ -140,9 +121,9 @@ export default {
       this.$refs[formName].resetFields();
     },
   },
-  created: function () {
-    this.indexs();
-  }
+  activated() {
+    this.getCat();
+  },
 };
 </script>
 

@@ -2,7 +2,7 @@
   <!-- 一个头部容器，装着头部的logo和按钮 -->
   <div class="header-g">
     <!-- logo图片 -->
-    <div class="logo" @click="$router.push('/layout/user')">
+    <div class="logo" @click="turnIntoIndex">
       <img src="../assets/img/logo-1.png" alt="LOGO"/>
     </div>
     <!-- 欢迎语
@@ -10,27 +10,43 @@
 
     <!-- 右边的消息和头像以及设置按钮 -->
     <div class="block">
-
-
       <!--TODO：以下代码需要进行修改-->
       <!--登录注册按钮  注意：登录后不显示 v-if="false"-->
       <div class="login" v-if="$store.state.isLogin">
-        <el-button size="small" round @click="$router.push('/layout/register')" style="margin-left: 30px">注册
+        <el-button
+            size="small"
+            round
+            @click="$router.push('/layout/register')"
+            style="margin-left: 30px"
+        >注册
         </el-button>
-        <el-button size="small" round @click="$router.push('/layout/login')">登录
+        <el-button size="small" round @click="$router.push('/layout/login')"
+        >登录
         </el-button>
       </div>
       <!-- 退出按钮"-->
-      <div style="float: right; width: 84px; height: 40px" v-if=$store.state.isNew
-           @click="quit">
+      <div
+          style="float: right; width: 84px; height: 40px"
+          v-if="$store.state.isNew"
+          @click="quit"
+      >
         <!--        <el-badge :value="2" class="item" type="warning">-->
         <el-badge class="item" type="warning">
           <el-button size="large">退出</el-button>
         </el-badge>
       </div>
       <!-- 用户头像图标 -->
-      <div style="float: right; margin-right: 30px; margin-top: -10px" @click="turnIntoUser">
-        <el-avatar icon="el-icon-user-solid" :size="50" style="cursor: pointer"></el-avatar>
+      <div
+          style="float: right; margin-right: 30px; margin-top: -10px"
+          @click="turnIntoUser"
+      >
+        <el-avatar
+            icon="el-icon-user-solid"
+            :size="50"
+            style="cursor: pointer"
+        ></el-avatar>
+        <!--        欢迎语句，TODO：注册和登录界面不展示，登录进入后展示-->
+        <div class="uxname">欢迎您！{{ user.uxname }}</div>
       </div>
     </div>
   </div>
@@ -45,22 +61,36 @@ export default {
       squareUrl:
           "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
       sizeList: ["large", "medium", "small"],
+      user: JSON.parse(localStorage.getItem('user')),
     };
   },
   methods: {
-    quit(){
+    quit() {
       localStorage.removeItem("user");
       localStorage.removeItem("cat");
       localStorage.removeItem("cats");
       localStorage.removeItem("apply");
-      this.$router.push('/layout/login');
-      this.$store.state.isNew = false;
-      this.$store.state.isLogin = true;
+      this.$store.commit("cisLogin");
+      this.$store.commit("cisNew");
+      // console.log(this.$store.state.isLogin, this.$store.state.isNew); // 测试点击退出后能否再次调用判断方法根据缓存中是否有user值来改变button的隐藏。
+      this.$router.push("/layout/login");
     },
-    turnIntoUser(){
-      this.$router.push('/layout/self');
-    }
-  }
+    turnIntoUser() {
+      this.$router.push("/layout/self");
+    },
+    turnIntoIndex() {
+      if (localStorage.getItem('user')) {
+        this.$router.push("/layout/user");
+      } else {
+        this.$router.push("/layout/login");
+      }
+    },
+  },
+  created() {
+    this.$store.commit("cisLogin");
+    this.$store.commit("cisNew");
+    // console.log(this.$store.state.isLogin, this.$store.state.isNew); //测试是否能根据缓存中是否有user键来改变button的显示隐藏
+  },
 };
 </script>
 
@@ -97,5 +127,10 @@ export default {
   width: 152px;
   height: 32px;
   margin-top: 4px;
+}
+
+.uxname {
+  font-size: 12px;
+  cursor: pointer;
 }
 </style>

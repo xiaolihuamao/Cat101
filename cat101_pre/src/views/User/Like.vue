@@ -37,6 +37,10 @@ export default {
   },
   methods: {
     indexs: async function () {
+      if(JSON.parse(localStorage.getItem('user'))==null){
+        this.$message.error("无token，请登录！") //后端返回失败结果，提示后端返回的错误message或者也可以自己设置提示
+        return;
+      }
       const {data: res} = await showStarAPI(JSON.parse(localStorage.getItem('user')).uid);
       if (res.code === '200') {
         this.catsALL = res.data;

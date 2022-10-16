@@ -170,3 +170,10 @@ export const updateSelfAPI=(json)=>{
         data:json
     })
 }
+//查询用户信息
+export const searchUserAPI=(uid)=>{
+    return request({
+        url:"/user/"+uid,
+        method:"get",
+    })
+}
