@@ -130,7 +130,7 @@ export default {
 <style scoped>
 .inset {
   width: 400px;
-  height: 280px;
+  height: 235px;
   background-color: #dfd6b9;
   position: absolute;
   top: 150px;
