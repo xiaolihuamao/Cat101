@@ -46,7 +46,7 @@
             style="cursor: pointer"
         ></el-avatar>
         <!--        欢迎语句，TODO：注册和登录界面不展示，登录进入后展示-->
-        <div class="uxname">欢迎您！{{ user.uxname }}</div>
+<!--        <div class="uxname">欢迎您！{{ user.uxname }}</div>-->
       </div>
     </div>
   </div>
