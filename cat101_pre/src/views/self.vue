@@ -110,6 +110,10 @@ export default {
         this.user=res.data;
         this.user.token=token;//添加token
         localStorage.setItem('user',JSON.stringify(this.user));
+
+        this.$store.commit('cUser')  //修改昵称后 重新get user
+          console.log(this.$store.state.user);
+
         this.reload();
       }else{
         this.$message.error(res.msg) ////后端返回失败结果，提示后端返回的错误message或者也可以自己设置提示
