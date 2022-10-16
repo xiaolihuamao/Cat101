@@ -16,7 +16,7 @@ const routes = [
     },
     {
         path: "/layout",
-        redirect: "/layout/login",
+        redirect: localStorage.getItem("user") ? '/layout/user' : '/layout/login',
         component: layOut,
         children: [ 					 // 通过children配置子级路由
             {
