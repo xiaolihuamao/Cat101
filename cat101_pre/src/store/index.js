@@ -10,6 +10,7 @@ export default new Vuex.Store({
   state: {
     isNew: false,
     isLogin: true,
+    user: JSON.parse(localStorage.getItem('user'))
     // catList:[]
     // token:''      //用来存储登陆成功后从后台得到的 token
 
@@ -38,21 +39,23 @@ export default new Vuex.Store({
     cisLogin(state) {
       if (localStorage.getItem('user')) {
         state.isLogin = false;
-      }else{
+      } else {
         state.isLogin = true;
       }
       return state.isLogin;
     },
     cisNew(state) {
       if (localStorage.getItem('user')) {
-        state.isNew = true;       
-      }else{
-        state.isNew = false; 
+        state.isNew = true;
+      } else {
+        state.isNew = false;
       }
       return state.isNew;
-      
-
     },
+    cUser(state) {
+      state.user = JSON.parse(localStorage.getItem('user'));
+      return state.user;
+    }
   },
   // 操作异步操作mutation
   actions: {

@@ -87,13 +87,17 @@ export default {
           this.$message.success("登录成功"); //后端返回成功结果，提示后端返回的成功message或者也可以自己设置提示
           // this.updataToken(res.token)
           localStorage.setItem("user", JSON.stringify(res.data)); // 存储用户信息到浏览器
+
+          this.$store.commit('cUser')  //登录成功重新get user
+          console.log(this.$store.state.user);
+
           if (res.data.utype === 0) {
             this.$router.push("/layout/user"); //跳转到首页
-            this.$store.state.isNew = true; //让welLogin组件上的“新消息”按钮出现
+            this.$store.state.isNew = true; //让welLogin组件上的“退出”按钮出现
             this.$store.state.isLogin = false;
           }else{
             this.$router.push('/layout/admin');
-            this.$store.state.isNew = true; //让welLogin组件上的“新消息”按钮出现
+            this.$store.state.isNew = true; //让welLogin组件上的“退出”按钮出现
             this.$store.state.isLogin = false;
           }
           //让welLogin组件上的“登录”和“注册”按钮消失
