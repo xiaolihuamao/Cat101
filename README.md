@@ -67,4 +67,4 @@
   * http请求库：axios@0.27.2，基于promise的网络请求库，用于向后端发送请求，实现交互。
 
 ---
-项目代码网页端Github地址：https://github.com/isSJa/Cat101_Android.git
+项目代码安卓端Github地址：https://github.com/isSJa/Cat101_Android.git
