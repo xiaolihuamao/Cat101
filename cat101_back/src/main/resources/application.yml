@@ -1,13 +1,18 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://39.105.141.55:3306/pet_manage?serverTimezone=GMT%2b8
+    url: jdbc:mysql://localhost:3306/pet_manage?serverTimezone=GMT%2b8
     username: root
-    password: 123
+    password: xxx868336790
   servlet:
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
+  redis:
+    port: 6379
+    password: xxx868336790
+    host: 192.168.112.128
+
 mybatis:
   mapper-locations: classpath:mapper/*.xml
 #  configuration:

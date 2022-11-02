@@ -1,7 +1,9 @@
 package com.example.cat101.controller;
 
 
+import cn.hutool.core.lang.TypeReference;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.cat101.common.Constants;
@@ -9,10 +11,13 @@ import com.example.cat101.common.Result;
 import com.example.cat101.controller.dto.UserDto;
 import com.example.cat101.entity.User;
 import com.example.cat101.service.IUserService;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 //eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxIiwiZXhwIjoxNjY0ODcxNzI4fQ.foLoQ5ihSURnSxDd_L8Vjtn15_2oR7tm12DMQlJ7cFA
 //eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyIiwiZXhwIjoxNjY0ODk1NjAxfQ.seni_MPiZeHfpoUbs6-KX_0hV0qQ39X2efvLNYk3of4
 
@@ -31,6 +36,9 @@ public class UserController {
     @Resource
     private IUserService userService;
 
+    @Resource
+    private RedisTemplate redisTemplate;
+    public static final String USERS_KEY="USERS_FRONT_ALL";
     // 新增或者更新
     @PostMapping("/save")
     public Result save(@RequestBody User user) {
@@ -50,10 +58,19 @@ public class UserController {
         userService.removeByIds(ids);
         return Result.success();
     }
-
     @GetMapping
+   // @Cacheable(value = "users" ,key = "'findAll'")
     public Result findAll() {
-        return Result.success(userService.list());
+        List<User>list;
+        String jsonStr= (String) redisTemplate.opsForValue().get(USERS_KEY);
+        if (StrUtil.isBlank(jsonStr)){
+            list=userService.list();
+            redisTemplate.opsForValue().set(USERS_KEY,JSONUtil.toJsonStr(list),60, TimeUnit.SECONDS);
+        }else {
+            list=JSONUtil.toBean(jsonStr, new TypeReference<List<User>>() {
+            },true);
+        }
+        return Result.success(list);
     }
 
     @GetMapping("/{id}")
