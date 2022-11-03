@@ -44,6 +44,10 @@ public class UserController {
     public Result save(@RequestBody User user) {
         userService.update();
         userService.saveOrUpdate(user);
+       /** redisTemplate.watch(USERS_KEY);
+        redisTemplate.multi();
+        各类redis操作语句
+        redisTemplate.exec();*/
         return Result.success();
     }
 
