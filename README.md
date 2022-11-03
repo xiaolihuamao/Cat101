@@ -1,2 +1,0 @@
-# kedaya101trainee
-justjust
